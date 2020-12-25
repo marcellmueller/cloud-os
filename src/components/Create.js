@@ -2,19 +2,23 @@ import './Create.scss';
 
 export default function Create() {
   return (
-    <section className="create">
-      <div>
-        <h2>Create</h2>
-        <p>
-          Cras facilisis urna ornare ex volutpat, et convallis erat elementum.
-          Ut aliquam, ipsum vitae gravida suscipit, metus dui bibendum est, eget
-          rhoncus nibh metus nec massa. Maecenas hendrerit laoreet augue nec
-          molestie. Cum sociis natoque penatibus et magnis dis parturient
-          montes, nascetur ridiculus mus.
-        </p>
-
-        <p>Duis a turpis sed lacus dapibus elementum sed eu lectus.</p>
-      </div>
+    <section className="login">
+      <form className="login-form" method="POST" action="/login">
+        <h2 id="login-title">Create User</h2>
+        <label for="create-first-name">First Name:</label>
+        <input type="email" className="login-name" required name="email" />
+        <label for="create-last-name">Last Name:</label>
+        <input type="email" className="login-name" required name="email" />
+        <label for="login-email">Email:</label>
+        <input type="email" id="login-email" required name="email" />
+        <label for="login-password">Password:</label>
+        <input type="password" id="login-password" required name="email" />
+        <label for="login-password">Re-enter Password:</label>
+        <input type="password" id="login-password" required name="email" />
+        <button type="submit" id="login-button">
+          Login
+        </button>
+      </form>
     </section>
   );
 }

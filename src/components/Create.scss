@@ -1,0 +1,14 @@
+@import '../index.scss';
+
+.login-name {
+  border: 0;
+  border-bottom: solid;
+  border-color: $darkshades;
+  display: block;
+  width: 90%;
+  margin-bottom: 0.5em;
+  padding-left: 30px;
+  background: url(/img/icons/userdark.png) no-repeat scroll;
+  background-size: 24px 24px;
+  padding-left: 30px;
+}

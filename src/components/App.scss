@@ -1,9 +1,28 @@
 @import '../index.scss';
 
 body {
-  background-color: $black;
+  background-color: $lightshades;
+  color: $darkshades;
+}
+
+input,
+textarea {
+  border: none;
+  background-image: none;
+  background-color: transparent;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+textarea:focus,
+input:focus {
+  outline: none;
 }
 
 .main-container {
   margin-top: 140px;
+  width: 80vw;
+  min-width: 600px;
+  margin-left: auto;
+  margin-right: auto;
 }
