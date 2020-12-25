@@ -1,0 +1,23 @@
+@import '../index';
+#nav-menu {
+  display: inline;
+  position: absolute;
+  background-color: $mainbrand;
+  width: 100%;
+  bottom: 0;
+  font-size: 24px;
+  font-weight: bolder;
+
+  .nav-menu-item {
+    padding-left: 0.5em;
+    padding-right: 0.5em;
+  }
+
+  .nav-menu-item:hover {
+    background-color: $darkaccent;
+  }
+}
+
+.active {
+  background-color: $lightaccent;
+}

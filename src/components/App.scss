@@ -5,6 +5,11 @@ body {
   color: $darkshades;
 }
 
+a {
+  color: inherit;
+  text-decoration: inherit;
+}
+
 input,
 textarea {
   border: none;
@@ -13,10 +18,6 @@ textarea {
   -webkit-box-shadow: none;
   -moz-box-shadow: none;
   box-shadow: none;
-}
-textarea:focus,
-input:focus {
-  outline: none;
 }
 
 .main-container {
