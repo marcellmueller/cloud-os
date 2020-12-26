@@ -8,7 +8,6 @@
   height: 420px;
   margin-left: auto;
   margin-right: auto;
-  padding-top: 1px;
   display: block;
   border-radius: 6px;
   border-width: 1px;
@@ -68,4 +67,8 @@
 textarea:focus,
 input:focus {
   outline: none;
+}
+
+h3 {
+  font-size: 10px;
 }

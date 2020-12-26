@@ -7,10 +7,18 @@ const app = express();
 app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
+app.use(
+  cookieSession({
+    name: 'session',
+    keys: ['key1', 'key2'],
+    overwrite: true,
+  })
+);
+
+//import process.env settings
 require('dotenv').config();
 
 const { Pool } = require('pg');
-
 const db = new Pool({
   connectionString: process.env.DATABASE_URL,
 });
@@ -24,6 +32,8 @@ app.get('/login', (req, res) => {
 app.post('/login', (req, res) => {
   const email = req.body.email;
   const password = req.body.password;
+
+  //query user from db
   db.query(
     `SELECT * FROM users
             WHERE email = $1;`,
@@ -33,7 +43,8 @@ app.post('/login', (req, res) => {
       const hashedPassword = data.rows[0].password;
       const bcryptCheck = bcrypt.compareSync(password, hashedPassword);
       if (bcryptCheck) {
-        console.log('BAM');
+        //set cookie with user id
+        req.session.user_id = data.rows[0].id;
         res.send(data.rows[0]);
       } else {
         res.send(false);

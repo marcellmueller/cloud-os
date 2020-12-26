@@ -5,13 +5,13 @@ export default function Create() {
     <section className="login">
       <form className="login-form" method="POST" action="/login">
         <h2 id="login-title">Create User</h2>
-        <label for="create-first-name">First Name:</label>
+        <h3>First Name:</h3>
         <input type="text" className="login-name" required name="email" />
-        <label for="create-last-name">Last Name:</label>
+        <h3>Last Name:</h3>
         <input type="text" className="login-name" required name="email" />
-        <label for="login-email">Email:</label>
+        <h3>Email:</h3>
         <input type="email" id="login-email" required name="email" />
-        <label for="login-password">Password:</label>
+        <h3>Password:</h3>
         <input
           type="password"
           minLength="6"
@@ -19,7 +19,7 @@ export default function Create() {
           required
           name="email"
         />
-        <label for="login-password">Re-enter Password:</label>
+        <h3>Re-enter Password:</h3>
         <input
           type="password"
           minLength="6"

@@ -1,20 +1,34 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, HashRouter } from 'react-router-dom';
+import { createBrowserHistory } from 'history';
 import './App.scss';
 import Nav from './Nav';
 import Login from './Login';
 import Create from './Create';
 import Home from './Home';
-
+const history = createBrowserHistory();
 export default function App() {
-  const [username, setUsername] = useState('');
+  const [user, setUser] = useState('');
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
   return (
-    <HashRouter>
+    <HashRouter history={history}>
       <div className="App">
-        <Nav username={username}></Nav>
+        <Nav setUsername={setUser} username={user}></Nav>
         <section className="main-container">
-          <Route exact path="/" component={Home} />
-          <Route setUsername={setUsername} path="/login" component={Login} />
+          <Route
+            exact
+            path="/"
+            render={(props) => (
+              <Home {...props} user={user} setUser={setUser} />
+            )}
+          />
+          <Route
+            path="/login"
+            render={(props) => <Login {...props} setUser={setUser} />}
+          />
           <Route path="/create" component={Create} />
         </section>
       </div>
