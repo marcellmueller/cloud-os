@@ -14,7 +14,7 @@ export default function Create() {
         <label for="login-password">Password:</label>
         <input
           type="password"
-          minlength="6"
+          minLength="6"
           id="login-password"
           required
           name="email"
@@ -22,7 +22,7 @@ export default function Create() {
         <label for="login-password">Re-enter Password:</label>
         <input
           type="password"
-          minlength="6"
+          minLength="6"
           id="login-password"
           required
           name="email"
