@@ -1,5 +1,4 @@
 import { useState } from 'react';
-import { Redirect } from 'react-router';
 import './Login.scss';
 import axios from 'axios';
 

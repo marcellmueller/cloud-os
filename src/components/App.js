@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Route, HashRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
+import axios from 'axios';
 import './App.scss';
 import Nav from './Nav';
 import Login from './Login';
@@ -10,13 +11,26 @@ const history = createBrowserHistory();
 export default function App() {
   const [user, setUser] = useState('');
 
+  const getUser = () => {
+    const promise = axios.get('/login').then((response) => {
+      if (response.data) {
+        setUser(response.data);
+        history.push('/');
+      } else {
+        user(false);
+      }
+    });
+    return promise;
+  };
+
   useEffect(() => {
-    console.log(user);
-  }, [user]);
+    getUser();
+  }, []);
+
   return (
     <HashRouter history={history}>
       <div className="App">
-        <Nav setUsername={setUser} username={user}></Nav>
+        <Nav history={history} setUser={setUser} user={user}></Nav>
         <section className="main-container">
           <Route
             exact
