@@ -1,6 +1,10 @@
+import { useEffect } from 'react';
 import './Home.scss';
 
 export default function Home(props) {
+  useEffect(() => {
+    return !props.user ? props.history.push('/login') : null;
+  }, []);
   return (
     <section className="home">
       <div>

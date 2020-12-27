@@ -6,7 +6,7 @@ export default function Nav(props) {
   return (
     <nav className="nav">
       <User user={props.user} setUser={props.setUser}></User>
-      <NavMenu></NavMenu>
+      <NavMenu user={props.user}></NavMenu>
     </nav>
   );
 }
