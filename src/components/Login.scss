@@ -48,23 +48,22 @@
       background-size: 24px 24px;
       padding-left: 30px;
     }
-
-    #login-button {
-      display: block;
-      background-color: $mainbrand;
-      color: $darkshades;
-      width: 100%;
-      border: none;
-      border-radius: 4px;
-      padding: 0.4em;
-    }
-    #login-button:hover {
-      color: $lightaccent;
-      background-color: $darkshades;
-    }
   }
 }
 
+.login-button {
+  display: block;
+  background-color: $mainbrand;
+  color: $darkshades;
+  width: 100%;
+  border: none;
+  border-radius: 4px;
+  padding: 0.4em;
+}
+.login-button:hover {
+  color: $lightaccent;
+  background-color: $darkshades;
+}
 textarea:focus,
 input:focus {
   outline: none;

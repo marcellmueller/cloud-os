@@ -53,7 +53,7 @@ export default function Login(props) {
           required
           name="email"
         />
-        <button onClick={login} type="submit" id="login-button">
+        <button onClick={login} type="submit" className="login-button">
           Login
         </button>
       </form>

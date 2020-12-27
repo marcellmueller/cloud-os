@@ -20,12 +20,12 @@ export default function User(props) {
     <section className="user">
       {props.user && <h3 className="user-h3">{name}</h3>}
       {props.user && (
-        <button className="user-logout" onClick={logoutClick}>
+        <button className="login-button" id="user-logout" onClick={logoutClick}>
           Logout
         </button>
       )}
       {!props.user && (
-        <button className="user-login" onClick={loginClick}>
+        <button className="login-button" id="user-login" onClick={loginClick}>
           Login
         </button>
       )}

@@ -73,7 +73,7 @@ export default function Create(props) {
       .then((response) => {
         props.setUser(false);
       })
-      .catch(console.log('err'));
+      .catch('error');
     return promise;
   };
 
@@ -123,7 +123,7 @@ export default function Create(props) {
           name="password2"
           onChange={password2OnChange}
         />
-        <button onClick={create} type="submit" id="login-button">
+        <button onClick={create} type="submit" className="login-button">
           Login
         </button>
       </form>
