@@ -26,7 +26,24 @@ const db = new Pool({
 const PORT = process.env.PORT || 8080;
 
 app.get('/login', (req, res) => {
-  return res.send('hello');
+  const userId = req.session.user_id;
+  if (userId) {
+    db.query(
+      `SELECT * FROM users
+              WHERE id = $1;`,
+      [userId]
+    )
+      .then((data) => {
+        if (data) {
+          res.send(data.rows[0]);
+        } else {
+          res.send(false);
+        }
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
+  }
 });
 
 app.post('/login', (req, res) => {
@@ -53,6 +70,12 @@ app.post('/login', (req, res) => {
     .catch((err) => {
       res.status(500).json({ error: err.message });
     });
+});
+
+app.get('/logout', (req, res) => {
+  console.log('logout');
+  req.session.user_id = null;
+  res.send('logout');
 });
 
 app.get('/', (req, res) => {

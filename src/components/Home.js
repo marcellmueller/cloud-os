@@ -1,4 +1,3 @@
-import { Redirect } from 'react-router';
 import './Home.scss';
 
 export default function Home(props) {

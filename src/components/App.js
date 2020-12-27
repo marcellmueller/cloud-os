@@ -1,5 +1,5 @@
 import { useState, useEffect } from 'react';
-import { Route, HashRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
 import './App.scss';
@@ -16,7 +16,6 @@ export default function App() {
     const promise = axios.get('/login').then((response) => {
       if (response.data) {
         setUser(response.data);
-        history.push('/');
       } else {
         user(false);
         history.push('/login');
@@ -27,10 +26,11 @@ export default function App() {
 
   useEffect(() => {
     getUser();
+    history.push('/login');
   }, []);
 
   return (
-    <HashRouter>
+    <BrowserRouter>
       <div className="App">
         <Nav setUser={setUser} user={user}></Nav>
         <section className="main-container">
@@ -40,6 +40,7 @@ export default function App() {
             render={(props) => (
               <Home {...props} user={user} setUser={setUser} />
             )}
+            replace
           />
           <Route
             path="/login"
@@ -48,6 +49,6 @@ export default function App() {
           <Route path="/create" component={Create} />
         </section>
       </div>
-    </HashRouter>
+    </BrowserRouter>
   );
 }
