@@ -8,6 +8,7 @@ import Login from './Login';
 import Create from './Create';
 import Home from './Home';
 const history = createBrowserHistory();
+
 export default function App() {
   const [user, setUser] = useState('');
 
@@ -18,6 +19,7 @@ export default function App() {
         history.push('/');
       } else {
         user(false);
+        history.push('/login');
       }
     });
     return promise;
@@ -28,9 +30,9 @@ export default function App() {
   }, []);
 
   return (
-    <HashRouter history={history}>
+    <HashRouter>
       <div className="App">
-        <Nav history={history} setUser={setUser} user={user}></Nav>
+        <Nav setUser={setUser} user={user}></Nav>
         <section className="main-container">
           <Route
             exact

@@ -1,23 +1,34 @@
-// import { useEffect } from 'react';
+import { useHistory } from 'react-router-dom';
 import './User.scss';
 import axios from 'axios';
 export default function User(props) {
-  // useEffect(() => {}, [props.user]);
+  const history = useHistory();
+
   const loginClick = () => {
-    props.history.push('/login');
+    console.log(props);
+    history.push('/login');
   };
 
   const logoutClick = () => {
     axios.get('/logout').then((response) => {
+      history.push('/login');
       props.setUser(false);
-      props.history.push('/login');
     });
   };
+
   return (
     <section className="user">
-      {props.user && <h3>{props.user.name}</h3>}
-      {props.user && <button onClick={logoutClick}>Logout</button>}
-      {!props.user && <button onClick={loginClick}>Login</button>}
+      {props.user && <h3 className="user-h3">{props.user.name}</h3>}
+      {props.user && (
+        <button className="user-logout" onClick={logoutClick}>
+          Logout
+        </button>
+      )}
+      {!props.user && (
+        <button className="user-login" onClick={loginClick}>
+          Login
+        </button>
+      )}
     </section>
   );
 }

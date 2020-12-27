@@ -5,11 +5,7 @@ export default function Nav(props) {
   console.log(props);
   return (
     <nav className="nav">
-      <User
-        history={props.history}
-        user={props.user}
-        setUser={props.setUser}
-      ></User>
+      <User user={props.user} setUser={props.setUser}></User>
       <NavMenu></NavMenu>
     </nav>
   );
