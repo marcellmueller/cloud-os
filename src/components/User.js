@@ -3,9 +3,9 @@ import './User.scss';
 import axios from 'axios';
 export default function User(props) {
   const history = useHistory();
+  const name = props.user.firstname;
 
   const loginClick = () => {
-    console.log(props);
     history.push('/login');
   };
 
@@ -18,7 +18,7 @@ export default function User(props) {
 
   return (
     <section className="user">
-      {props.user && <h3 className="user-h3">{props.user.name}</h3>}
+      {props.user && <h3 className="user-h3">{name}</h3>}
       {props.user && (
         <button className="user-logout" onClick={logoutClick}>
           Logout

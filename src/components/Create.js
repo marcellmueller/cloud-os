@@ -16,7 +16,7 @@ export default function Create(props) {
 
   const passwordError = (password, password2) => {
     if (password !== password2) {
-      setError('Password Mismatch');
+      setError('Password mismatch');
     } else if (password === password2) {
       setError('');
     }
@@ -44,6 +44,7 @@ export default function Create(props) {
 
   const create = (event) => {
     event.preventDefault();
+
     const data = {
       firstName: firstName,
       lastName: lastName,
@@ -55,12 +56,22 @@ export default function Create(props) {
     const promise = axios
       .post(URL, data)
       .then((response) => {
-        if (response.data) {
-          console.log(response.data);
-          props.history.push('/');
-        } else {
-          console.log('no response data');
+        if (response.data === 'exists') {
+          setError('Email already used');
         }
+
+        if (response.data === 'mismatch') {
+          setError('Password mismatch');
+        }
+        if (response.data.email) {
+          props.history.push('/create-confirmed');
+        }
+      })
+      .then({});
+    axios
+      .get('/logout')
+      .then((response) => {
+        props.setUser(false);
       })
       .catch(console.log('err'));
     return promise;
@@ -116,7 +127,7 @@ export default function Create(props) {
           Login
         </button>
       </form>
-      {error ? <div>{error}</div> : null}
+      {error ? <div id="error">{error}</div> : null}
     </section>
   );
 }

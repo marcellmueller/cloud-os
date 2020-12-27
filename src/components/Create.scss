@@ -12,3 +12,11 @@
   background-size: 24px 24px;
   padding-left: 30px;
 }
+
+#error {
+  text-align: center;
+  margin: 4px;
+  font-size: 20px;
+  font-weight: bolder;
+  color: $error;
+}

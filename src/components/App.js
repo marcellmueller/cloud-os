@@ -1,11 +1,12 @@
 import { useState, useEffect } from 'react';
-import { Route, BrowserRouter, Redirect } from 'react-router-dom';
+import { Route, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
 import './App.scss';
 import Nav from './Nav';
 import Login from './Login';
 import Create from './Create';
+import CreateConfirmed from './CreateConfirmed';
 import Home from './Home';
 const history = createBrowserHistory();
 
@@ -46,7 +47,11 @@ export default function App() {
             path="/login"
             render={(props) => <Login {...props} setUser={setUser} />}
           />
-          <Route path="/create" component={Create} />
+          <Route
+            path="/create"
+            render={(props) => <Create {...props} setUser={setUser} />}
+          />
+          <Route path="/create-confirmed" component={CreateConfirmed} />
         </section>
       </div>
     </BrowserRouter>
