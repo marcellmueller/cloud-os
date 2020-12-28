@@ -29,7 +29,6 @@ export default function App() {
 
   useEffect(() => {
     getUser();
-    history.push('/login');
   }, []);
 
   return (

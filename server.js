@@ -10,7 +10,7 @@ app.use(bodyParser.urlencoded({ extended: false }));
 app.use(
   cookieSession({
     name: 'session',
-    keys: ['key1'],
+    keys: ['user_id'],
     overwrite: true,
   })
 );
@@ -73,9 +73,11 @@ app.post('/create', (req, res) => {
   });
 });
 
-app.post('/logout', (req, res) => {
-  res.clearCookie(req.session.user_id);
+app.get('/logout', (req, res) => {
+  req.session.user_id = null;
+  // res.clearCookie(req.session.user_id);
   console.log(req.session);
+  res.send('cookie deleted');
 });
 
 app.listen(PORT, () => {

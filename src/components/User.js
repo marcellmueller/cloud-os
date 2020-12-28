@@ -4,20 +4,21 @@ import axios from 'axios';
 export default function User(props) {
   const history = useHistory();
   const name = props.user.firstname;
+
   const loginClick = () => {
     history.push('/login');
   };
 
   const logoutClick = (event) => {
     event.preventDefault();
-
     props.setUser('');
     const URL = `/logout/`;
 
     const promise = axios
-      .post(URL, { logout: true })
+      .get(URL)
       .then((response) => {
         props.setUser('');
+        console.log('hello');
       })
       .catch(function (error) {
         props.setError('500 Error');
