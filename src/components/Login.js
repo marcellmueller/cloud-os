@@ -29,7 +29,7 @@ export default function Login(props) {
           user(response.data);
           props.history.push('/');
         } else {
-          user(false);
+          user('');
         }
       })
       .catch(function (error) {

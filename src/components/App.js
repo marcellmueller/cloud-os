@@ -20,7 +20,7 @@ export default function App() {
       if (response.data) {
         setUser(response.data);
       } else {
-        user(false);
+        setUser('');
         history.push('/login');
       }
     });
@@ -35,7 +35,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav setUser={setUser} user={user}></Nav>
+        <Nav setUser={setUser} user={user} setError={setError}></Nav>
         <section className="main-container">
           <Route
             exact
