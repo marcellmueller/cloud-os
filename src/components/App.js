@@ -12,6 +12,7 @@ const history = createBrowserHistory();
 
 export default function App() {
   const [user, setUser] = useState('');
+  const [error, setError] = useState('');
 
   const getUser = () => {
     const promise = axios.get('/login').then((response) => {
@@ -45,11 +46,25 @@ export default function App() {
           />
           <Route
             path="/login"
-            render={(props) => <Login {...props} setUser={setUser} />}
+            render={(props) => (
+              <Login
+                {...props}
+                setUser={setUser}
+                error={error}
+                setError={setError}
+              />
+            )}
           />
           <Route
             path="/create"
-            render={(props) => <Create {...props} setUser={setUser} />}
+            render={(props) => (
+              <Create
+                {...props}
+                setUser={setUser}
+                error={error}
+                setError={setError}
+              />
+            )}
           />
           <Route path="/create-confirmed" component={CreateConfirmed} />
         </section>

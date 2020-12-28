@@ -22,14 +22,20 @@ export default function Login(props) {
     event.preventDefault();
     const data = { email: email, password: password };
     const URL = `/login/`;
-    const promise = axios.post(URL, data).then((response) => {
-      if (response.data) {
-        user(response.data);
-        props.history.push('/');
-      } else {
-        user(false);
-      }
-    });
+    const promise = axios
+      .post(URL, data)
+      .then((response) => {
+        if (response.data) {
+          user(response.data);
+          props.history.push('/');
+        } else {
+          user(false);
+        }
+      })
+      .catch(function (error) {
+        props.setError('Incorrect login information');
+      });
+
     return promise;
   };
 
@@ -57,6 +63,7 @@ export default function Login(props) {
           Login
         </button>
       </form>
+      {props.error ? <div id="error">{props.error}</div> : null}
     </section>
   );
 }

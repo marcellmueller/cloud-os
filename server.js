@@ -73,9 +73,7 @@ app.post('/login', (req, res) => {
 });
 
 app.get('/logout', (req, res) => {
-  console.log('logout');
   req.session.user_id = null;
-  res.send('logout');
 });
 
 app.get('/', (req, res) => {

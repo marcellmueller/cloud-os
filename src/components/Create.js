@@ -8,7 +8,6 @@ export default function Create(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  const [error, setError] = useState('');
 
   useEffect(() => {
     passwordError(password, password2);
@@ -16,9 +15,9 @@ export default function Create(props) {
 
   const passwordError = (password, password2) => {
     if (password !== password2) {
-      setError('Password mismatch');
+      props.setError('Password mismatch');
     } else if (password === password2) {
-      setError('');
+      props.setError('');
     }
   };
 
@@ -57,11 +56,11 @@ export default function Create(props) {
       .post(URL, data)
       .then((response) => {
         if (response.data === 'exists') {
-          setError('Email already used');
+          props.setError('Email already used');
         }
 
         if (response.data === 'mismatch') {
-          setError('Password mismatch');
+          props.setError('Password mismatch');
         }
         if (response.data.email) {
           props.history.push('/create-confirmed');
@@ -127,7 +126,7 @@ export default function Create(props) {
           Login
         </button>
       </form>
-      {error ? <div id="error">{error}</div> : null}
+      {props.error ? <div id="error">{props.error}</div> : null}
     </section>
   );
 }

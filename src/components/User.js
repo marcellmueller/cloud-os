@@ -10,9 +10,9 @@ export default function User(props) {
   };
 
   const logoutClick = () => {
+    props.setUser(false);
     axios.get('/logout').then((response) => {
       history.push('/login');
-      props.setUser(false);
     });
   };
 
