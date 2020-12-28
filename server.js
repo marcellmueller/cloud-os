@@ -97,7 +97,8 @@ app.post('/create', (req, res) => {
     if (password !== password2) {
       return res.send('mismatch');
     }
-    const queryParams = [firstName, lastName, email, password];
+    const hashedPassword = bcrypt.hashSync(password, 10);
+    const queryParams = [firstName, lastName, email, hashedPassword];
 
     db.query(
       `INSERT INTO users (firstName, lastName, email, password)
