@@ -16,19 +16,23 @@ export default function App() {
   const [message, setMessage] = useState('');
 
   const getUser = () => {
-    const promise = axios.get('/login').then((response) => {
-      if (response.data) {
-        setUser(response.data);
-      } else {
-        setUser('');
-        history.push('/login');
-      }
-    });
+    const promise = axios
+      .get('/login')
+      .then((response) => {
+        if (response.data) {
+          setUser(response.data);
+        } else {
+          setUser('');
+          history.push('/login');
+        }
+      })
+      .catch(console.log('error'));
     return promise;
   };
 
   useEffect(() => {
     getUser();
+    history.push('/login');
   }, []);
 
   return (

@@ -28,10 +28,10 @@ const PORT = process.env.PORT || 8080;
 
 //import routes
 const loginRoutes = require('./routes/login');
-// const logoutRoutes = require('./routes/logout');
+const logoutRoutes = require('./routes/logout');
 
 app.use('/login', loginRoutes(db));
-// app.use('/logout', logoutRoutes(db));
+app.use('/logout', logoutRoutes(db));
 
 app.get('/', (req, res) => {
   console.log(req.session);
@@ -71,13 +71,6 @@ app.post('/create', (req, res) => {
         return res.status(500).json({ error: err.message });
       });
   });
-});
-
-app.get('/logout', (req, res) => {
-  req.session.user_id = null;
-  // res.clearCookie(req.session.user_id);
-  console.log(req.session);
-  res.send('cookie deleted');
 });
 
 app.listen(PORT, () => {
