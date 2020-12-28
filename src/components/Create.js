@@ -8,7 +8,6 @@ export default function Create(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-
   useEffect(() => {
     passwordError(password, password2);
   }, [password, password2]);
@@ -63,7 +62,8 @@ export default function Create(props) {
           props.setError('Password mismatch');
         }
         if (response.data.email) {
-          props.history.push('/create-confirmed');
+          props.setMessage('Account created');
+          props.history.push('/message');
         }
       })
       .then({});

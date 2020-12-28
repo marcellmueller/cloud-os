@@ -10,15 +10,12 @@ export default function User(props) {
   };
 
   const logoutClick = () => {
+    history.push('/login');
+
     props.setUser(false);
-    axios
-      .get('/logout')
-      .then((response) => {
-        history.push('/login');
-      })
-      .catch(function (error) {
-        props.setError('500 Error');
-      });
+    axios.get('/logout').catch(function (error) {
+      props.setError('500 Error');
+    });
   };
 
   return (

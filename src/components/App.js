@@ -6,13 +6,14 @@ import './App.scss';
 import Nav from './Nav';
 import Login from './Login';
 import Create from './Create';
-import CreateConfirmed from './CreateConfirmed';
+import Message from './Message';
 import Home from './Home';
 const history = createBrowserHistory();
 
 export default function App() {
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
+  const [message, setMessage] = useState('');
 
   const getUser = () => {
     const promise = axios.get('/login').then((response) => {
@@ -63,10 +64,16 @@ export default function App() {
                 setUser={setUser}
                 error={error}
                 setError={setError}
+                setMessage={setMessage}
               />
             )}
           />
-          <Route path="/create-confirmed" component={CreateConfirmed} />
+          <Route
+            exact
+            path="/message"
+            render={(props) => <Message {...props} message={message} />}
+            replace
+          />{' '}
         </section>
       </div>
     </BrowserRouter>
