@@ -8,17 +8,17 @@ export default function Create(props) {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [password2, setPassword2] = useState('');
-  useEffect(() => {
-    passwordError(password, password2);
-  }, [password, password2]);
 
-  const passwordError = (password, password2) => {
-    if (password !== password2) {
-      props.setError('Password mismatch');
-    } else if (password === password2) {
-      props.setError('');
-    }
-  };
+  useEffect(() => {
+    const passwordError = (password, password2) => {
+      if (password !== password2) {
+        props.setError('Password mismatch');
+      } else if (password === password2) {
+        props.setError('');
+      }
+    };
+    passwordError(password, password2);
+  }, [password, password2, props]);
 
   const firstNameOnChange = (event) => {
     setFirstName(event.target.value);
@@ -99,7 +99,7 @@ export default function Create(props) {
         <h3>Email:</h3>
         <input
           type="email"
-          id="login-email"
+          className="login-email"
           required
           name="email"
           onChange={emailOnChange}
@@ -108,7 +108,7 @@ export default function Create(props) {
         <input
           type="password"
           minLength="6"
-          id="login-password"
+          className="login-password"
           required
           name="password"
           onChange={passwordOnChange}
@@ -117,7 +117,7 @@ export default function Create(props) {
         <input
           type="password"
           minLength="6"
-          id="login-password"
+          className="login-password"
           required
           name="password2"
           onChange={password2OnChange}

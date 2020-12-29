@@ -21,10 +21,10 @@
     margin-left: auto;
     margin-right: auto;
 
-    #login-title {
+    .login-title {
     }
 
-    #login-email {
+    .login-email {
       border: 0;
       border-bottom: solid;
       border-color: $darkshades;
@@ -37,7 +37,7 @@
       padding-left: 30px;
     }
 
-    #login-password {
+    .login-password {
       border: 0;
       border-bottom: solid;
       border-color: $darkshades;

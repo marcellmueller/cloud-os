@@ -43,12 +43,12 @@ export default function Login(props) {
   return (
     <section className="login">
       <form className="login-form" method="POST" action="/login">
-        <h2 id="login-title">Login</h2>
+        <h2 className="login-title">Login</h2>
         <h3>Email:</h3>
         <input
           onChange={emailOnChange}
           type="email"
-          id="login-email"
+          className="login-email"
           required
           name="email"
         />
@@ -56,7 +56,7 @@ export default function Login(props) {
         <input
           onChange={passwordOnChange}
           type="password"
-          id="login-password"
+          className="login-password"
           required
           name="email"
         />

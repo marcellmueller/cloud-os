@@ -14,6 +14,16 @@ export default function NavMenu(props) {
           Users
         </NavLink>
       ) : null}
+      {props.user ? (
+        <NavLink
+          className="nav-menu-item"
+          id="nav-menu-account"
+          exact
+          to="/account"
+        >
+          Account
+        </NavLink>
+      ) : null}
       {!props.user ? (
         <NavLink className="nav-menu-item" id="nav-menu-login" to="/login">
           Login

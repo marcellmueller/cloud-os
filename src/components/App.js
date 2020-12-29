@@ -3,13 +3,13 @@ import { Route, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
 import './App.scss';
-import Nav from './Nav';
+import Nav from './nav/Nav';
 import Login from './Login';
 import Create from './Create';
 import Message from './Message';
 import Home from './Home';
 import UserList from './UserList';
-
+import Account from './Account';
 const history = createBrowserHistory();
 
 export default function App() {
@@ -24,12 +24,13 @@ export default function App() {
       .then((response) => {
         if (response.data) {
           setUser(response.data);
+          history.push('/');
         } else {
           setUser('');
           history.push('/login');
         }
       })
-      .catch(console.log('error'));
+      .catch();
     return promise;
   };
 
@@ -38,18 +39,16 @@ export default function App() {
       .get('/users')
       .then((response) => {
         if (response.data) {
-          console.log(response.data);
           setUsers(response.data);
         }
       })
-      .catch(console.log('error'));
+      .catch();
     return promise;
   };
 
   useEffect(() => {
     getUser();
     getUsers();
-    history.push('/login');
   }, []);
 
   return (
@@ -98,6 +97,11 @@ export default function App() {
           <Route
             path="/users"
             render={(props) => <UserList {...props} users={users} />}
+            replace
+          />
+          <Route
+            path="/account"
+            render={(props) => <Account {...props} users={users} />}
             replace
           />
         </section>
