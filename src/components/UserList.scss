@@ -1,0 +1,34 @@
+@import '../index.scss';
+
+.users-titles {
+  width: 90vw;
+
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 2fr 2fr;
+  grid-template-rows: 1fr;
+  .users-h3 {
+    font-size: 20px;
+    font-weight: bolder;
+    margin: 10px;
+    border-style: solid;
+    border-left: 0;
+    border-right: 0;
+    border-top: 0;
+    color: $darkshades;
+    border-color: $darkshades;
+    white-space: nowrap;
+  }
+  .users-titles-firstname {
+  }
+
+  .users-titles-lastname {
+  }
+
+  .users-titles-email {
+  }
+}
+// <div className="users-titles">
+// <h3 className="users-titles-firstname">First Name</h3>
+// <h3 className="users-titles-lastname">Last Name</h3>
+// <h3 className="users-titles-email">Email</h3>
+// </div>
