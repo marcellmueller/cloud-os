@@ -42,7 +42,7 @@ module.exports = (db) => {
         if (bcryptCheck) {
           //set cookie with user id
           req.session.user_id = data.rows[0].id;
-          res.send(data.rows[0]);
+          res.status(200).send(data.rows[0]);
         } else {
           req.session = null;
           res.send(false);
