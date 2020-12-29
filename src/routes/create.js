@@ -30,7 +30,7 @@ module.exports = (db) => {
       )
         .then((data) => {
           const listing = data.rows[0];
-          return res.send(listing);
+          return res.status(200).send(listing);
         })
         .catch((err) => {
           return res.status(500).json({ error: err.message });

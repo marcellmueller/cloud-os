@@ -14,7 +14,7 @@ module.exports = (db) => {
       )
         .then((data) => {
           if (data) {
-            res.send(data.rows[0]);
+            res.status(200).send(data.rows[0]);
           } else {
             req.session = null;
             res.send(false);
