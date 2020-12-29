@@ -27,9 +27,9 @@ db.connect();
 const PORT = process.env.PORT || 8080;
 
 //import routes
-const loginRoutes = require('./routes/login');
-const logoutRoutes = require('./routes/logout');
-const createRoutes = require('./routes/create');
+const loginRoutes = require('./src/routes/login');
+const logoutRoutes = require('./src/routes/logout');
+const createRoutes = require('./src/routes/create');
 
 app.use('/login', loginRoutes(db));
 app.use('/logout', logoutRoutes(db));
@@ -37,6 +37,21 @@ app.use('/create', createRoutes(db));
 
 app.get('/', (req, res) => {
   console.log(req.session);
+});
+
+app.get('/users', (req, res) => {
+  db.query(`SELECT * FROM users;`, [])
+    .then((data) => {
+      if (data) {
+        res.send(data.rows);
+      } else {
+        req.session = null;
+        res.send(false);
+      }
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 });
 
 app.listen(PORT, () => {

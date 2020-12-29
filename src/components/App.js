@@ -8,10 +8,13 @@ import Login from './Login';
 import Create from './Create';
 import Message from './Message';
 import Home from './Home';
+import UserList from './UserList';
+
 const history = createBrowserHistory();
 
 export default function App() {
   const [user, setUser] = useState('');
+  const [users, setUsers] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
@@ -30,8 +33,22 @@ export default function App() {
     return promise;
   };
 
+  const getUsers = () => {
+    const promise = axios
+      .get('/users')
+      .then((response) => {
+        if (response.data) {
+          console.log(response.data);
+          setUsers(response.data);
+        }
+      })
+      .catch(console.log('error'));
+    return promise;
+  };
+
   useEffect(() => {
     getUser();
+    getUsers();
     history.push('/login');
   }, []);
 
@@ -56,6 +73,7 @@ export default function App() {
                 setUser={setUser}
                 error={error}
                 setError={setError}
+                setMessage={setMessage}
               />
             )}
           />
@@ -76,7 +94,12 @@ export default function App() {
             path="/message"
             render={(props) => <Message {...props} message={message} />}
             replace
-          />{' '}
+          />
+          <Route
+            path="/users"
+            render={(props) => <UserList {...props} users={users} />}
+            replace
+          />
         </section>
       </div>
     </BrowserRouter>

@@ -23,8 +23,8 @@ module.exports = (db) => {
       const queryParams = [firstName, lastName, email, hashedPassword];
 
       db.query(
-        `INSERT INTO users (firstName, lastName, email, password)
-              VALUES ($1, $2, $3, $4)
+        `INSERT INTO users (firstName, lastName, email, password, user_since)
+              VALUES ($1, $2, $3, $4, CLOCK_TIMESTAMP())
               RETURNING *;`,
         queryParams
       )

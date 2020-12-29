@@ -9,7 +9,11 @@ export default function NavMenu(props) {
           Home
         </NavLink>
       ) : null}
-
+      {props.user ? (
+        <NavLink className="nav-menu-item" id="nav-menu-home" exact to="/users">
+          Users
+        </NavLink>
+      ) : null}
       {!props.user ? (
         <NavLink className="nav-menu-item" id="nav-menu-login" to="/login">
           Login

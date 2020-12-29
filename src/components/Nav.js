@@ -1,14 +1,14 @@
 import './Nav.scss';
-import User from './User';
+import UserNav from './UserNav';
 import NavMenu from './NavMenu';
 export default function Nav(props) {
   return (
     <nav className="nav">
-      <User
+      <UserNav
         user={props.user}
         setUser={props.setUser}
         setError={props.setError}
-      ></User>
+      ></UserNav>
       <NavMenu user={props.user}></NavMenu>
     </nav>
   );

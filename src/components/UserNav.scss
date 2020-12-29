@@ -1,0 +1,22 @@
+.user {
+  position: absolute;
+  right: 0;
+  margin: 10px;
+  user-select: none;
+  .user-h3 {
+    display: inline;
+    margin: 10px;
+    font-size: 20px;
+  }
+  #user-logout {
+    display: inline;
+    margin: 10px;
+    width: 120px;
+  }
+
+  #user-login {
+    display: inline;
+    margin: 10px;
+    width: 120px;
+  }
+}

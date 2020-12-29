@@ -27,7 +27,8 @@ export default function Login(props) {
       .then((response) => {
         if (response.data) {
           user(response.data);
-          props.history.push('/');
+          props.setMessage('Login verified');
+          props.history.push('/message');
         } else {
           user('');
         }
