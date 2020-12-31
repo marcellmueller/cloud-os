@@ -9,7 +9,8 @@ $darkshades: #61605c;
 
 body {
   margin: 0;
-  font-family: 'Oxygen', sans-serif;
+  color: $lightshades;
+  font-family: 'Inter', sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $darkshades;

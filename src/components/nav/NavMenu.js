@@ -1,4 +1,5 @@
 import { NavLink } from 'react-router-dom';
+import UserNav from './UserNav';
 import './NavMenu.scss';
 
 export default function NavMenu(props) {
@@ -34,6 +35,11 @@ export default function NavMenu(props) {
           Create
         </NavLink>
       ) : null}
+      <UserNav
+        user={props.user}
+        setUser={props.setUser}
+        setError={props.setError}
+      ></UserNav>
     </nav>
   );
 }

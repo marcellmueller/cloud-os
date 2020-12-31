@@ -1,22 +1,22 @@
 .user {
-  position: absolute;
+  position: fixed;
   right: 0;
-  margin: 10px;
+  top: 0;
   user-select: none;
   .user-h3 {
     display: inline;
-    margin: 10px;
+    margin: 8px;
     font-size: 20px;
   }
   #user-logout {
     display: inline;
-    margin: 10px;
+    margin: 8px;
     width: 120px;
   }
 
   #user-login {
     display: inline;
-    margin: 10px;
+    margin: 8px;
     width: 120px;
   }
 }

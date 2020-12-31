@@ -1,20 +1,25 @@
 @import '../../index';
 #nav-menu {
-  display: inline;
-  position: absolute;
-  background-color: $mainbrand;
-  width: 100%;
-  bottom: 0;
-  font-size: 24px;
+  display: flex; // position: fixed;
+  background-color: $darkshades;
+  width: 35%;
+  max-width: 300px;
+  height: 56px;
+  font-size: 20px;
   font-weight: bolder;
 
   .nav-menu-item {
+    margin: auto;
+    padding-top: 14px;
+    height: 42px;
     padding-left: 0.5em;
     padding-right: 0.5em;
+    color: $lightshades;
   }
 
   .nav-menu-item:hover {
-    background-color: $darkaccent;
+    color: $darkshades;
+    background-color: $lightshades;
   }
 }
 
