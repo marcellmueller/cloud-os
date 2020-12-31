@@ -101,7 +101,15 @@ export default function App() {
           />
           <Route
             path="/account"
-            render={(props) => <Account {...props} users={users} />}
+            render={(props) => (
+              <Account
+                {...props}
+                user={user}
+                setUser={setUser}
+                error={error}
+                setError={setError}
+              />
+            )}
             replace
           />
         </section>

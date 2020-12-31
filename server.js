@@ -30,10 +30,12 @@ const PORT = process.env.PORT || 8080;
 const loginRoutes = require('./src/routes/login');
 const logoutRoutes = require('./src/routes/logout');
 const createRoutes = require('./src/routes/create');
+const updateRoutes = require('./src/routes/update');
 
 app.use('/login', loginRoutes(db));
 app.use('/logout', logoutRoutes(db));
 app.use('/create', createRoutes(db));
+app.use('/update', updateRoutes(db));
 
 app.get('/', (req, res) => {
   console.log(req.session);
