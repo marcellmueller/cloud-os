@@ -4,6 +4,7 @@ import axios from 'axios';
 export default function UserNav(props) {
   const history = useHistory();
   const name = props.user.firstname;
+  console.log(name);
 
   const loginClick = () => {
     history.push('/login');
@@ -28,9 +29,16 @@ export default function UserNav(props) {
     return promise;
   };
 
+  const redirect = () => {
+    history.push('/account');
+  };
   return (
     <section className="user">
-      {props.user && <h3 className="user-h3">{name}</h3>}
+      {props.user && (
+        <h3 onClick={redirect} className="user-h3">
+          {name}
+        </h3>
+      )}
       {props.user && (
         <button className="login-button" id="user-logout" onClick={logoutClick}>
           Logout
