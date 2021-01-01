@@ -54,6 +54,7 @@ export default function Create(props) {
     const promise = axios
       .post(URL, data)
       .then((response) => {
+        console.log(response.data);
         if (response.data === 'exists') {
           props.setError('Email already used');
         }
@@ -66,7 +67,8 @@ export default function Create(props) {
           props.history.push('/message');
         }
       })
-      .then({});
+      .then({})
+      .catch();
     axios
       .get('/logout')
       .then((response) => {

@@ -31,11 +31,13 @@ const loginRoutes = require('./src/routes/login');
 const logoutRoutes = require('./src/routes/logout');
 const createRoutes = require('./src/routes/create');
 const updateRoutes = require('./src/routes/update');
+const postsRoutes = require('./src/routes/posts');
 
 app.use('/login', loginRoutes(db));
 app.use('/logout', logoutRoutes(db));
 app.use('/create', createRoutes(db));
 app.use('/update', updateRoutes(db));
+app.use('/posts', postsRoutes(db));
 
 app.get('/', (req, res) => {
   console.log(req.session);

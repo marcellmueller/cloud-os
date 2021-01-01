@@ -33,7 +33,7 @@ module.exports = (db) => {
           return res.status(200).send(listing);
         })
         .catch((err) => {
-          return res.status(500).json({ error: err.message });
+          return res.status(500).send('error');
         });
     });
   });

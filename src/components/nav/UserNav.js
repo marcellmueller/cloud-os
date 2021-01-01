@@ -4,7 +4,6 @@ import axios from 'axios';
 export default function UserNav(props) {
   const history = useHistory();
   const name = props.user.firstname;
-  console.log(name);
 
   const loginClick = () => {
     history.push('/login');

@@ -11,6 +11,11 @@ export default function NavMenu(props) {
         </NavLink>
       ) : null}
       {props.user ? (
+        <NavLink className="nav-menu-item" id="nav-menu-home" exact to="/posts">
+          Posts
+        </NavLink>
+      ) : null}
+      {props.user ? (
         <NavLink className="nav-menu-item" id="nav-menu-home" exact to="/users">
           Users
         </NavLink>

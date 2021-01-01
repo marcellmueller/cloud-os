@@ -2,14 +2,18 @@ import { useState, useEffect } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
+
 import './App.scss';
+
 import Nav from './nav/Nav';
 import Login from './Login';
 import Create from './Create';
 import Message from './Message';
 import Home from './Home';
 import UserList from './UserList';
-import Account from './Account';
+import Account from './Account/Account';
+import Posts from './Posts/Posts';
+
 const history = createBrowserHistory();
 
 export default function App() {
@@ -19,18 +23,15 @@ export default function App() {
   const [message, setMessage] = useState('');
 
   const getUser = () => {
-    const promise = axios
-      .get('/login')
-      .then((response) => {
-        if (response.data) {
-          setUser(response.data);
-          history.push('/');
-        } else {
-          setUser('');
-          history.push('/login');
-        }
-      })
-      .catch();
+    const promise = axios.get('/login').then((response) => {
+      if (response.data) {
+        setUser(response.data);
+        history.push('/');
+      } else {
+        setUser('');
+        history.push('/login');
+      }
+    });
     return promise;
   };
 
@@ -42,7 +43,7 @@ export default function App() {
           setUsers(response.data);
         }
       })
-      .catch();
+      .catch(console.log('error'));
     return promise;
   };
 
@@ -110,6 +111,12 @@ export default function App() {
                 setError={setError}
               />
             )}
+            replace
+          />
+          <Route
+            exact
+            path="/posts"
+            render={(props) => <Posts {...props} message={message} />}
             replace
           />
         </section>

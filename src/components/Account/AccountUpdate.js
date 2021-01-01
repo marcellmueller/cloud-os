@@ -60,6 +60,7 @@ export default function AccountUpdate(props) {
     const promise = axios
       .post(URL, data)
       .then((response) => {
+        console.log(response);
         props.setUser((prevState) => {
           return {
             ...prevState,
