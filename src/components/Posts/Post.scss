@@ -1,0 +1,24 @@
+@import '../../index';
+
+// <section className="post">
+// <div className="post-name">{props.firstName + ' ' + props.lastName}</div>
+// <div className="post-title">{props.title}</div>
+// <div className="post-content">{props.content}</div>
+// <div className="post-category">{props.category}</div>
+// <div className="post-date">{formatDate()}</div>
+// </section>
+
+.post {
+  color: $darkshades;
+  background-color: $mainbrand;
+  background-image: url(/img/qbkls.png);
+  width: 600px;
+  height: 200px;
+  margin-left: auto;
+  margin-right: auto;
+  margin-top: 2em;
+  display: block;
+  border-radius: 6px;
+  border-width: 1px;
+  box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
+}

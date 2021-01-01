@@ -21,35 +21,50 @@ export default function App() {
   const [users, setUsers] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
+  const [posts, setPosts] = useState('');
+  // const getUser = () => {
+  //   const promise = axios.get('/login').then((response) => {
+  //     if (response.data) {
+  //       setUser(response.data);
+  //       history.push('/');
+  //     } else {
+  //       setUser('');
+  //       history.push('/login');
+  //     }
+  //   });
+  //   return promise;
+  // };
 
-  const getUser = () => {
-    const promise = axios.get('/login').then((response) => {
-      if (response.data) {
-        setUser(response.data);
-        history.push('/');
-      } else {
-        setUser('');
-        history.push('/login');
-      }
-    });
-    return promise;
-  };
+  // const getUsers = () => {
+  //   const promise = axios
+  //     .get('/users')
+  //     .then((response) => {
+  //       if (response.data) {
+  //         setUsers(response.data);
+  //       }
+  //     })
+  //     .catch(console.log('error'));
+  //   return promise;
+  // };
 
-  const getUsers = () => {
-    const promise = axios
-      .get('/users')
-      .then((response) => {
-        if (response.data) {
-          setUsers(response.data);
+  useEffect(() => {
+    Promise.all([axios.get('/login'), axios.get('/users'), axios.get('/posts')])
+      .then((all) => {
+        if (all[0].data) {
+          setUser(all[0].data);
+          history.push('/');
+        } else {
+          setUser('');
+          history.push('/login');
+        }
+        if (all[1].data) {
+          setUsers(all[1].data);
+        }
+        if (all[2].data) {
+          setPosts(all[2].data);
         }
       })
       .catch(console.log('error'));
-    return promise;
-  };
-
-  useEffect(() => {
-    getUser();
-    getUsers();
   }, []);
 
   return (
@@ -116,7 +131,9 @@ export default function App() {
           <Route
             exact
             path="/posts"
-            render={(props) => <Posts {...props} message={message} />}
+            render={(props) => (
+              <Posts {...props} posts={posts} setPosts={setPosts} />
+            )}
             replace
           />
         </section>

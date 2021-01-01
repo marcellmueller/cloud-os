@@ -26,3 +26,4 @@ CREATE TABLE favorite_posts (
   user_id INTEGER REFERENCES users(id) ON DELETE CASCADE,
   post_id INTEGER REFERENCES posts(id) ON DELETE CASCADE
 );
+

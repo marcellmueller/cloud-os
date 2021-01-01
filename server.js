@@ -33,6 +33,7 @@ const createRoutes = require('./src/routes/create');
 const updateRoutes = require('./src/routes/update');
 const postsRoutes = require('./src/routes/posts');
 
+//use routes
 app.use('/login', loginRoutes(db));
 app.use('/logout', logoutRoutes(db));
 app.use('/create', createRoutes(db));
