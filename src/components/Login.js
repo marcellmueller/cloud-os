@@ -41,30 +41,32 @@ export default function Login(props) {
   };
 
   return (
-    <section className="login">
-      <form className="login-form" method="POST" action="/login">
-        <h2 className="login-title">Login</h2>
-        <h3>Email:</h3>
-        <input
-          onChange={emailOnChange}
-          type="email"
-          className="login-email"
-          required
-          name="email"
-        />
-        <h3>Password:</h3>
-        <input
-          onChange={passwordOnChange}
-          type="password"
-          className="login-password"
-          required
-          name="email"
-        />
-        <button onClick={login} type="submit" className="login-button">
-          Login
-        </button>
-      </form>
-      {props.error ? <div id="error">{props.error}</div> : null}
-    </section>
+    <div className="login-body">
+      <section className="login">
+        <form className="login-form" method="POST" action="/login">
+          <h2 className="login-title">Login</h2>
+          <h3>Email:</h3>
+          <input
+            onChange={emailOnChange}
+            type="email"
+            className="login-email"
+            required
+            name="email"
+          />
+          <h3>Password:</h3>
+          <input
+            onChange={passwordOnChange}
+            type="password"
+            className="login-password"
+            required
+            name="email"
+          />
+          <button onClick={login} type="submit" className="login-button">
+            Login
+          </button>
+        </form>
+        {props.error ? <div id="error">{props.error}</div> : null}
+      </section>
+    </div>
   );
 }
