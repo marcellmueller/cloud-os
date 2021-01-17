@@ -8,6 +8,7 @@ export default function Home(props) {
   };
   return (
     <div
+      className="desktop"
       onClick={toggle}
       style={{
         width: '100vw',

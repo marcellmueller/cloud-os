@@ -46,6 +46,16 @@ export default function UserList(props) {
       name: 'Tic Tac Toe',
       last_used: Date.now(),
     },
+    {
+      id: 5,
+      name: 'Terminal',
+      last_used: Date.now(),
+    },
+    {
+      id: 6,
+      name: 'Brightness',
+      last_used: Date.now(),
+    },
   ];
 
   const mapUser = menuItems.map((item) => {

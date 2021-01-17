@@ -2,6 +2,17 @@
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
+terminal
+file explorer/save
+paint
+game
+open programs/minimize
+nav menu
+clock
+settings
+change background
+dark theme
+
 ## Available Scripts
 
 In the project directory, you can run:
