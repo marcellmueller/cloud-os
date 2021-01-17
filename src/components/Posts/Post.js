@@ -11,6 +11,7 @@ export default function Post(props) {
       <div className="post-content">{props.content}</div>
       <div className="post-category">{props.category}</div>
       <div className="post-date">{formatDate()}</div>
+      <button className="post-like">Like</button>
     </section>
   );
 }

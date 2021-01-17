@@ -41,7 +41,7 @@ module.exports = (db) => {
         const bcryptCheck = bcrypt.compareSync(password, hashedPassword);
         if (bcryptCheck) {
           //set cookie with user id
-          req.session.user_id = data.rows[0].id;
+          req.session.employee_id = data.rows[0].id;
           res.status(200).send(data.rows[0]);
         } else {
           req.session = null;

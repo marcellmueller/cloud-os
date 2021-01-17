@@ -1,0 +1,16 @@
+@import '../../index';
+
+.menu-item {
+}
+
+.menu-item-name {
+  margin: 4px;
+  padding: 4px;
+  font-size: 18px;
+  font-weight: bolder;
+}
+
+.menu-item-name:hover {
+  color: $nav-light;
+  background-color: $nav-dark;
+}

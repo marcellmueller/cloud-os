@@ -1,17 +1,17 @@
 @import '../../index';
 #nav-menu {
   display: flex; // position: fixed;
-  background-color: $darkshades;
+  background-color: $nav-light;
   width: 35%;
   max-width: 300px;
-  height: 56px;
+  height: 30px;
   font-size: 20px;
   font-weight: bolder;
 
   .nav-menu-item {
     margin: auto;
-    padding-top: 14px;
-    height: 42px;
+    padding-top: 2px;
+    height: 30px;
     padding-left: 0.5em;
     padding-right: 0.5em;
     color: $lightshades;
@@ -25,4 +25,18 @@
 
 .active {
   background-color: $lightaccent;
+}
+
+.os-logo {
+  width: 24px;
+  position: fixed;
+  left: 4px;
+  top: 4px;
+  filter: invert(100%);
+}
+
+.menu-button {
+  background-color: $nav-light;
+  padding-left: 20px;
+  font-size: 20px;
 }

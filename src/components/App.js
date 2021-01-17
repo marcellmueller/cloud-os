@@ -2,26 +2,27 @@ import { useState, useEffect } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
 import { createBrowserHistory } from 'history';
 import axios from 'axios';
-
 import './App.scss';
 
 import Nav from './nav/Nav';
 import Login from './Login';
 import Create from './Create';
 import Message from './Message';
-import Home from './Home';
+import Desktop from './Desktop';
 import UserList from './UserList';
 import Account from './Account/Account';
-import Posts from './Posts/Posts';
 
 const history = createBrowserHistory();
 
 export default function App() {
+  const [state, setState] = useState({
+    showMenu: false,
+  });
   const [user, setUser] = useState('');
-  const [users, setUsers] = useState('');
+  // const [users, setUsers] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  const [posts, setPosts] = useState('');
+  // const [posts, setPosts] = useState('');
   // const getUser = () => {
   //   const promise = axios.get('/login').then((response) => {
   //     if (response.data) {
@@ -47,36 +48,48 @@ export default function App() {
   //   return promise;
   // };
 
-  useEffect(() => {
-    Promise.all([axios.get('/login'), axios.get('/users'), axios.get('/posts')])
-      .then((all) => {
-        if (all[0].data) {
-          setUser(all[0].data);
-          history.push('/');
-        } else {
-          setUser('');
-          history.push('/login');
-        }
-        if (all[1].data) {
-          setUsers(all[1].data);
-        }
-        if (all[2].data) {
-          setPosts(all[2].data);
-        }
-      })
-      .catch(console.log('error'));
-  }, []);
+  // useEffect(() => {
+  //   Promise.all([axios.get('/login'), axios.get('/users'), axios.get('/posts')])
+  //     .then((all) => {
+  //       if (all[0].data) {
+  //         setUser(all[0].data);
+  //         history.push('/');
+  //       } else {
+  //         setUser('');
+  //         history.push('/login');
+  //       }
+  //       if (all[1].data) {
+  //         setUsers(all[1].data);
+  //       }
+  //       if (all[2].data) {
+  //         setPosts(all[2].data);
+  //       }
+  //     })
+  //     .catch(console.log('error'));
+  // }, []);
 
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav setUser={setUser} user={user} setError={setError}></Nav>
+        <Nav
+          setUser={setUser}
+          user={user}
+          state={state}
+          setState={setState}
+          setError={setError}
+        ></Nav>
         <section className="main-container">
           <Route
             exact
             path="/"
             render={(props) => (
-              <Home {...props} user={user} setUser={setUser} />
+              <Desktop
+                {...props}
+                user={user}
+                setUser={setUser}
+                state={state}
+                setState={setState}
+              />
             )}
             replace
           />
@@ -110,11 +123,7 @@ export default function App() {
             render={(props) => <Message {...props} message={message} />}
             replace
           />
-          <Route
-            path="/users"
-            render={(props) => <UserList {...props} users={users} />}
-            replace
-          />
+
           <Route
             path="/account"
             render={(props) => (
@@ -125,14 +134,6 @@ export default function App() {
                 error={error}
                 setError={setError}
               />
-            )}
-            replace
-          />
-          <Route
-            exact
-            path="/posts"
-            render={(props) => (
-              <Posts {...props} posts={posts} setPosts={setPosts} />
             )}
             replace
           />
