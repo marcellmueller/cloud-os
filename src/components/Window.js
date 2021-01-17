@@ -1,5 +1,5 @@
 import './Window.scss';
-
+import Loading from './Startup/Loading';
 const Box = () => (
   <div
     className="box"
