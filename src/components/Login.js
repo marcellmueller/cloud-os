@@ -28,7 +28,7 @@ export default function Login(props) {
         if (response.data) {
           user(response.data);
           props.setMessage('Login verified');
-          props.history.push('/desktop');
+          props.history.push('/');
         } else {
           user('');
         }

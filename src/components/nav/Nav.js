@@ -29,7 +29,7 @@ export default function Nav(props) {
         state={props.state}
         setState={props.setState}
       ></NavMenu>
-      {props.state.showMenu ? <Menu></Menu> : null}
+      {props.state.showMenu ? <Menu setUser={props.setUser}></Menu> : null}
       <div>
         {' '}
         <div onClick={toggle}>

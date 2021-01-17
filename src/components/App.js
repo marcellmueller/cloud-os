@@ -1,13 +1,11 @@
 import { useState } from 'react';
-import { Route, BrowserRouter } from 'react-router-dom';
+import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import './App.scss';
 
 import Nav from './nav/Nav';
 import Login from './Login';
-import Create from './Create';
-import Message from './Message';
+
 import Desktop from './Desktop';
-import Account from './Account/Account';
 
 export default function App() {
   const [state, setState] = useState({
@@ -67,26 +65,32 @@ export default function App() {
   return (
     <BrowserRouter>
       <div className="App">
-        <Nav
-          setUser={setUser}
-          user={user}
-          state={state}
-          setState={setState}
-          setError={setError}
-        ></Nav>
         <section className="main-container">
           <Route
             exact
             path="/"
-            render={(props) => (
-              <Desktop
-                {...props}
-                user={user}
-                setUser={setUser}
-                state={state}
-                setState={setState}
-              />
-            )}
+            render={(props) =>
+              user ? (
+                <>
+                  <Nav
+                    setUser={setUser}
+                    user={user}
+                    state={state}
+                    setState={setState}
+                    setError={setError}
+                  ></Nav>
+                  <Desktop
+                    {...props}
+                    user={user}
+                    setUser={setUser}
+                    state={state}
+                    setState={setState}
+                  />
+                </>
+              ) : (
+                <Redirect to="/login"></Redirect>
+              )
+            }
             replace
           />
           <Route
@@ -101,7 +105,7 @@ export default function App() {
               />
             )}
           />
-          <Route
+          {/* <Route
             path="/create"
             render={(props) => (
               <Create
@@ -132,7 +136,7 @@ export default function App() {
               />
             )}
             replace
-          />
+          /> */}
         </section>
       </div>
     </BrowserRouter>
