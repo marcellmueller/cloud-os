@@ -1,7 +1,5 @@
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
 import { Route, BrowserRouter } from 'react-router-dom';
-import { createBrowserHistory } from 'history';
-import axios from 'axios';
 import './App.scss';
 
 import Nav from './nav/Nav';
@@ -9,14 +7,12 @@ import Login from './Login';
 import Create from './Create';
 import Message from './Message';
 import Desktop from './Desktop';
-import UserList from './UserList';
 import Account from './Account/Account';
-
-const history = createBrowserHistory();
 
 export default function App() {
   const [state, setState] = useState({
     showMenu: false,
+    showCalendar: false,
   });
   const [user, setUser] = useState('');
   // const [users, setUsers] = useState('');

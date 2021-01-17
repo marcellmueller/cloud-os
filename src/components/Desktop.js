@@ -4,7 +4,12 @@ import Window from './Window';
 
 export default function Home(props) {
   const toggle = () => {
-    props.setState({ showMenu: false });
+    props.setState({
+      ...props.state,
+      showMenu: false,
+      showCalendar: false,
+    });
+    // props.setState({ showMenu: false });
   };
   return (
     <div

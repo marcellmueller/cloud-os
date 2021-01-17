@@ -5,6 +5,7 @@
   width: 35%;
   max-width: 300px;
   height: 30px;
+
   font-size: 20px;
   font-weight: bolder;
 
@@ -28,15 +29,16 @@
 }
 
 .os-logo {
-  width: 24px;
+  width: 20px;
   position: fixed;
+  margin: 2px;
   left: 4px;
   top: 4px;
-  filter: invert(100%);
 }
 
 .menu-button {
   background-color: $nav-light;
-  padding-left: 20px;
-  font-size: 20px;
+  font-family: 'VT323', monospace;
+  padding-left: 26px;
+  font-size: 28px;
 }

@@ -10,8 +10,10 @@ $nav-light: #f6f8f7;
 $nav-dark: #61605c;
 body {
   margin: 0;
+  height: 100%;
+  overflow: hidden;
   color: $lightshades;
-  font-family: 'Inter', sans-serif;
+  font-family: 'VT323', monospace;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   color: $darkshades;

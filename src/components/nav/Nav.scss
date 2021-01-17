@@ -17,4 +17,9 @@
   position: fixed;
   right: 4px;
   top: 4px;
+  font-size: 22px;
+}
+
+.clock:hover {
+  filter: invert(50%);
 }
