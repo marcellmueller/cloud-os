@@ -18,8 +18,8 @@ app.use(
 //import process.env settings
 require('dotenv').config();
 
-const { Pool } = require('pg');
-const db = new Pool({
+const { Client } = require('pg');
+const db = new Client({
   connectionString: process.env.DATABASE_URL,
 });
 db.connect();

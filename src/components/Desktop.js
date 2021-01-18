@@ -1,8 +1,11 @@
+import { useState } from 'react';
 import './Desktop.scss';
 import Calculator from './Apps/Calculator';
 import Code from './Apps/Code';
 
 export default function Home(props) {
+  const [code, setCode] = useState('');
+
   const toggle = () => {
     props.setState({
       ...props.state,
@@ -23,7 +26,13 @@ export default function Home(props) {
         <Calculator state={props.state} setState={props.setState}></Calculator>
       ) : null}
       {props.state.showCode ? (
-        <Code state={props.state} setState={props.setState}></Code>
+        <Code
+          state={props.state}
+          setState={props.setState}
+          code={code}
+          setCode={setCode}
+          language={'javascript'}
+        ></Code>
       ) : null}
       {/* <Window></Window> */}
     </div>
