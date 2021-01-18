@@ -2,6 +2,8 @@ import { useState, useEffect } from 'react';
 import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import './App.scss';
 import Bios from './Startup/Bios';
+import Loading from './Startup/Loading';
+
 import Nav from './nav/Nav';
 import Login from './Login';
 
@@ -11,7 +13,7 @@ export default function App() {
   const [state, setState] = useState({
     showMenu: false,
     showCalendar: false,
-    showCalculator: true,
+    showCalculator: false,
     openApps: ['Calculator', 'test1', 'test2'],
   });
 
@@ -105,7 +107,12 @@ export default function App() {
             render={(props) => <Bios {...props} message={message} />}
             replace
           />
-
+          <Route
+            exact
+            path="/loading"
+            render={(props) => <Loading {...props} message={message} />}
+            replace
+          />
           {/* <Route
             path="/account"
             render={(props) => (
