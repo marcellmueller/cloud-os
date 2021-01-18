@@ -14,6 +14,7 @@ export default function App() {
     showMenu: false,
     showCalendar: false,
     showCalculator: false,
+    showCode: false,
     openApps: [],
   });
 

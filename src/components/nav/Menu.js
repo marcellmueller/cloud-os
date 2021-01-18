@@ -38,7 +38,7 @@ export default function UserList(props) {
     },
     {
       id: 3,
-      name: 'Word',
+      name: 'Code',
       last_used: Date.now(),
     },
     {

@@ -1,6 +1,7 @@
 import './Desktop.scss';
-import Window from './Window';
 import Calculator from './Apps/Calculator';
+import Code from './Apps/Code';
+
 export default function Home(props) {
   const toggle = () => {
     props.setState({
@@ -21,7 +22,9 @@ export default function Home(props) {
       {props.state.showCalculator ? (
         <Calculator state={props.state} setState={props.setState}></Calculator>
       ) : null}
-
+      {props.state.showCode ? (
+        <Code state={props.state} setState={props.setState}></Code>
+      ) : null}
       {/* <Window></Window> */}
     </div>
   );

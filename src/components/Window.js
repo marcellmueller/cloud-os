@@ -8,8 +8,7 @@ export default function Window(props) {
       ...props.state,
       showMenu: false,
       showCalendar: false,
-      // [keyName]: false,
-      showCalculator: false,
+      [keyName]: false,
     });
   };
 
@@ -23,11 +22,10 @@ export default function Window(props) {
     }
     props.setState({
       ...props.state,
+      showMenu: false,
       showCalendar: false,
-      // [keyName]: false,
-      showCalculator: false,
+      [keyName]: false,
       openApps: openApps,
-      asdasdasd: 213412031,
     });
   };
 
