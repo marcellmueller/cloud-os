@@ -1,0 +1,16 @@
+@import '../../index';
+
+.code-nav {
+  background-color: $nav-dark;
+}
+
+.new-file-icon,
+.save-file-icon,
+.open-file-icon {
+}
+
+.new-file-icon:hover,
+.save-file-icon:hover,
+.open-file-icon:hover {
+  transform: scale(1.2);
+}

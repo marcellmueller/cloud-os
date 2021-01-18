@@ -1,6 +1,6 @@
-import { useState } from 'react';
 import './Code.scss';
 import Window from '../Window';
+import CodeNav from './CodeNav';
 import AceEditor from 'react-ace';
 
 import 'ace-builds/src-noconflict/mode-javascript';
@@ -11,14 +11,17 @@ export default function Code(props) {
     props.setCode(newValue);
   }
   const display = (
-    <AceEditor
-      value={props.code}
-      mode="javascript"
-      theme="monokai"
-      onChange={onChange}
-      name="UNIQUE_ID_OF_DIV"
-      editorProps={{ $blockScrolling: true }}
-    />
+    <>
+      <CodeNav></CodeNav>
+      <AceEditor
+        value={props.code}
+        mode="javascript"
+        theme="monokai"
+        onChange={onChange}
+        name="UNIQUE_ID_OF_DIV"
+        editorProps={{ $blockScrolling: true }}
+      />
+    </>
   );
   return (
     <Window
