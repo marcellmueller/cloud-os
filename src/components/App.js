@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import './App.scss';
-
+import Bios from './Startup/Bios';
 import Nav from './nav/Nav';
 import Login from './Login';
 
@@ -11,36 +11,18 @@ export default function App() {
   const [state, setState] = useState({
     showMenu: false,
     showCalendar: false,
+    showCalculator: true,
+    openApps: ['Calculator', 'test1', 'test2'],
   });
+
+  useEffect(() => {
+    console.log(state);
+  }, [state]);
+
   const [user, setUser] = useState('');
   // const [users, setUsers] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
-  // const [posts, setPosts] = useState('');
-  // const getUser = () => {
-  //   const promise = axios.get('/login').then((response) => {
-  //     if (response.data) {
-  //       setUser(response.data);
-  //       history.push('/');
-  //     } else {
-  //       setUser('');
-  //       history.push('/login');
-  //     }
-  //   });
-  //   return promise;
-  // };
-
-  // const getUsers = () => {
-  //   const promise = axios
-  //     .get('/users')
-  //     .then((response) => {
-  //       if (response.data) {
-  //         setUsers(response.data);
-  //       }
-  //     })
-  //     .catch(console.log('error'));
-  //   return promise;
-  // };
 
   // useEffect(() => {
   //   Promise.all([axios.get('/login'), axios.get('/users'), axios.get('/posts')])
@@ -116,15 +98,15 @@ export default function App() {
                 setMessage={setMessage}
               />
             )}
-          />
+          /> */}
           <Route
             exact
-            path="/message"
-            render={(props) => <Message {...props} message={message} />}
+            path="/bios"
+            render={(props) => <Bios {...props} message={message} />}
             replace
           />
 
-          <Route
+          {/* <Route
             path="/account"
             render={(props) => (
               <Account

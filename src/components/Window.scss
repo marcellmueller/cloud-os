@@ -3,6 +3,8 @@
 .window {
   height: 100%;
   border-style: solid;
+  background-color: $nav-light;
+  cursor: default !important;
 }
 .window-nav {
   width: 100%;

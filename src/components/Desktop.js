@@ -1,7 +1,6 @@
 import './Desktop.scss';
-import { Rnd } from 'react-rnd';
 import Window from './Window';
-
+import Calculator from './Apps/Calculator';
 export default function Home(props) {
   const toggle = () => {
     props.setState({
@@ -9,7 +8,6 @@ export default function Home(props) {
       showMenu: false,
       showCalendar: false,
     });
-    // props.setState({ showMenu: false });
   };
   return (
     <div
@@ -20,19 +18,11 @@ export default function Home(props) {
         height: '100vh',
       }}
     >
-      <Rnd
-        default={{
-          x: 150,
-          y: 205,
-          width: 500,
-          height: 190,
-        }}
-        minWidth={500}
-        minHeight={420}
-        bounds="window"
-      >
-        <Window></Window>
-      </Rnd>
+      {props.state.showCalculator ? (
+        <Calculator state={props.state} setState={props.setState}></Calculator>
+      ) : null}
+
+      {/* <Window></Window> */}
     </div>
   );
 }

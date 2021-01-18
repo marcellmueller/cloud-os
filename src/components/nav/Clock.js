@@ -17,7 +17,7 @@ class Clock extends Component {
   }
   getCurrentTime = () => {
     const locale = this.props.locale ? this.props.locale : [];
-    const hour12 = this.props.hour12 == false ? false : true;
+    const hour12 = this.props.hour12 === false ? false : true;
     let hour, minute, second;
     if (this.props.format) {
       switch (this.props.format.toLowerCase()) {

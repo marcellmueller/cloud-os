@@ -5,8 +5,11 @@ import Menu from './Menu';
 import Calendar from 'react-calendar';
 import './Nav.scss';
 import './Calendar.scss';
+import Open from './Open';
 export default function Nav(props) {
+  //calendar state
   const [value, onChange] = useState(new Date());
+
   const toggle = () => {
     console.log('click');
     props.state.showCalendar
@@ -29,9 +32,15 @@ export default function Nav(props) {
         state={props.state}
         setState={props.setState}
       ></NavMenu>
-      {props.state.showMenu ? <Menu setUser={props.setUser}></Menu> : null}
+      <Open state={props.state} setState={props.setState}></Open>{' '}
+      {props.state.showMenu ? (
+        <Menu
+          setUser={props.setUser}
+          state={props.state}
+          setState={props.setState}
+        ></Menu>
+      ) : null}
       <div>
-        {' '}
         <div onClick={toggle}>
           <Clock />
         </div>

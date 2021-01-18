@@ -1,61 +1,54 @@
 import './Window.scss';
-import Loading from './Startup/Loading';
-const Box = () => (
-  <div
-    className="box"
-    style={{ margin: 0, height: '100%', paddingBottom: '40px' }}
-  >
-    <article className="media">
-      <div className="media-left">
-        <figure className="image is-64x64">
-          <img
-            src="https://avatars1.githubusercontent.com/u/10220449?v=3&s=460"
-            draggable="false"
-            alt="github avatar"
-          />
-        </figure>
-      </div>
-      <div className="media-content">
-        <div className="content">
-          <p>
-            <strong>bokuweb</strong> <small>@bokuweb17</small>{' '}
-            <small>31m</small>
-            <br />
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean
-            efficitur sit amet massa fringilla egestas. Nullam condimentum
-            luctus turpis.
-          </p>
-        </div>
-        <nav className="level is-mobile">
-          <div className="level-left">
-            <a className="level-item">
-              <span className="icon is-small">
-                <i className="fa fa-reply" />
-              </span>
-            </a>
-            <a className="level-item">
-              <span className="icon is-small">
-                <i className="fa fa-retweet" />
-              </span>
-            </a>
-            <a className="level-item">
-              <span className="icon is-small">
-                <i className="fa fa-heart" />
-              </span>
-            </a>
-          </div>
-        </nav>
-      </div>
-    </article>
-  </div>
-);
+import { Rnd } from 'react-rnd';
 
 export default function Window(props) {
+  const toggle = (event) => {
+    const keyName = 'show' + props.name;
+    props.setState({
+      ...props.state,
+      showMenu: false,
+      showCalendar: false,
+      // [keyName]: false,
+      showCalculator: false,
+    });
+  };
+
+  const close = () => {
+    const keyName = 'show' + props.name;
+    const openApps = props.state.openApps;
+    let showCalc = props.state.showCalculator;
+    showCalc = false;
+    const index = openApps.indexOf(props.name);
+    if (index > -1) {
+      openApps.splice(index, 1);
+    }
+    props.setState({
+      ...props.state,
+      showCalendar: false,
+      // [keyName]: false,
+      showCalculator: showCalc,
+      openApps: [openApps],
+      asdasdasd: 213412031,
+    });
+  };
+
   return (
-    <section className="window">
-      <nav className="window-nav">
+    <Rnd
+      default={{
+        x: 150,
+        y: 205,
+        width: 500,
+        height: 190,
+      }}
+      minWidth={500}
+      minHeight={420}
+      bounds="window"
+    >
+      <nav className="window-nav" onClick={close}>
         <section className="window-nav-buttons">
-          <button className="window-nav-button">_</button>
+          <button onClick={toggle} className="window-nav-button">
+            _
+          </button>
           <button className="window-nav-button">
             {' '}
             <img
@@ -66,7 +59,7 @@ export default function Window(props) {
           </button>
         </section>
       </nav>
-      <Box />
-    </section>
+      <section className="window">{props.display}</section>
+    </Rnd>
   );
 }

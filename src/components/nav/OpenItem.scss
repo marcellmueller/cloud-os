@@ -1,0 +1,19 @@
+.open-item {
+  display: inline-block;
+  width: 100px;
+  margin: 1px;
+  margin-left: 2px;
+  margin-right: 2px;
+  font-size: 22px;
+  height: 25px;
+  text-align: center;
+  user-select: none;
+  border: solid;
+  border-width: 2px;
+  -webkit-box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.9);
+  box-shadow: inset 0px 0px 1px 1px rgba(0, 0, 0, 0.9);
+}
+
+.open-item:hover {
+  filter: invert(30%);
+}

@@ -1,0 +1,58 @@
+.bios-body {
+  width: 100vw;
+  height: 100vh;
+
+  background-color: black;
+  position: fixed;
+  top: 0;
+
+  font-size: 26px;
+  user-select: none;
+  .bios-container {
+    background-color: black;
+    min-width: 1024px;
+    min-height: 768px;
+    max-width: 1024px;
+    margin-left: auto;
+    margin-right: auto;
+
+    .energy-star-logo {
+      position: relative;
+      top: 30px;
+      left: 685px;
+    }
+  }
+}
+
+.blue-logo {
+  position: relative;
+  bottom: 76px;
+  left: 20px;
+}
+.bios-top-text {
+  position: relative;
+  bottom: 170px;
+  left: 80px;
+}
+.highlight {
+  color: white;
+  font-weight: bolder;
+}
+
+.cpu-model {
+  position: relative;
+  bottom: 76px;
+  left: 30px;
+}
+
+.bios-extension {
+  position: relative;
+  top: 100px;
+  left: 30px;
+}
+
+.bios-bottom {
+  position: relative;
+  top: 100px;
+  left: 30px;
+}

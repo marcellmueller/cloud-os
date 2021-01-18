@@ -56,14 +56,27 @@ export default function UserList(props) {
       name: 'Brightness',
       last_used: Date.now(),
     },
+    {
+      id: 7,
+      name: 'Calculator',
+      last_used: Date.now(),
+    },
   ];
 
-  const mapUser = menuItems.map((item) => {
-    return <MenuItem key={item.id} id={item.id} name={item.name} />;
+  const mapItems = menuItems.map((item) => {
+    return (
+      <MenuItem
+        key={item.id}
+        id={item.id}
+        name={item.name}
+        state={props.state}
+        setState={props.setState}
+      />
+    );
   });
   return (
     <div className="menu">
-      {mapUser}
+      {mapItems}
       <button className="logout-button" id="user-logout" onClick={logoutClick}>
         <img
           alt="logo"
