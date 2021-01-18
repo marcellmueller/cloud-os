@@ -13,11 +13,10 @@ export default function Window(props) {
     });
   };
 
-  const close = () => {
+  const close = (event) => {
     const keyName = 'show' + props.name;
     const openApps = props.state.openApps;
-    let showCalc = props.state.showCalculator;
-    showCalc = false;
+
     const index = openApps.indexOf(props.name);
     if (index > -1) {
       openApps.splice(index, 1);
@@ -26,7 +25,7 @@ export default function Window(props) {
       ...props.state,
       showCalendar: false,
       // [keyName]: false,
-      showCalculator: showCalc,
+      showCalculator: false,
       openApps: [openApps],
       asdasdasd: 213412031,
     });
@@ -43,13 +42,14 @@ export default function Window(props) {
       minWidth={500}
       minHeight={420}
       bounds="window"
+      onClick={(e) => e.stopPropagation()}
     >
-      <nav className="window-nav" onClick={close}>
+      <nav className="window-nav">
         <section className="window-nav-buttons">
           <button onClick={toggle} className="window-nav-button">
             _
           </button>
-          <button className="window-nav-button">
+          <button onClick={close} className="window-nav-button">
             {' '}
             <img
               alt="logo"
