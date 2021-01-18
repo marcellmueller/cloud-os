@@ -26,7 +26,7 @@ export default function Window(props) {
       showCalendar: false,
       // [keyName]: false,
       showCalculator: false,
-      openApps: [openApps],
+      openApps: openApps,
       asdasdasd: 213412031,
     });
   };

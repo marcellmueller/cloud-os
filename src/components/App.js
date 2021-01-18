@@ -14,7 +14,7 @@ export default function App() {
     showMenu: false,
     showCalendar: false,
     showCalculator: false,
-    openApps: ['Calculator', 'test1', 'test2'],
+    openApps: [],
   });
 
   useEffect(() => {
