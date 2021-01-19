@@ -1,0 +1,36 @@
+@import '../../index';
+
+.code-new {
+  width: 100%;
+  height: 100%;
+}
+
+.code-open {
+  width: 100%;
+  height: 100%;
+  background-color: $nav-light;
+}
+
+.code-save {
+  width: 100%;
+  height: 100%;
+  background-color: $nav-light;
+}
+
+.code-button {
+  display: inline;
+  background-color: $nav-light;
+  color: $nav-dark;
+  width: 120px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  padding: 0.2em;
+  font-family: 'VT323', monospace;
+  font-weight: bolder;
+  font-size: 24px;
+}
+.code-button:hover {
+  color: $lightaccent;
+  background-color: $darkshades;
+}

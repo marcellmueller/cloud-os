@@ -12,7 +12,12 @@ export default function Code(props) {
 
   const display = (
     <>
-      <CodeNav code={props.code} setCode={props.setCode}></CodeNav>
+      <CodeNav
+        code={props.code}
+        setCode={props.setCode}
+        state={props.state}
+        setState={props.setState}
+      ></CodeNav>
       <AceEditor
         value={props.code.content}
         mode="javascript"

@@ -1,12 +1,14 @@
 import { useState } from 'react';
 import './Desktop.scss';
-import Calculator from './Apps/Calculator';
-import Code from './Apps/Code';
-import CodePopUp from './Apps/CodePopUp';
+import Calculator from './Calculator/Calculator';
+import Code from './Code/Code';
+import CodePopUp from './Code/CodePopUp';
 
 export default function Home(props) {
   const [code, setCode] = useState({
-    showPopUp: false,
+    new: true,
+    open: false,
+    save: false,
     content: `let moveUp = (map) => {
     let location = findLocation(map, playerLocation);
     if (map[location[0] - 1][location[1]] !== 'x') {
@@ -50,7 +52,14 @@ export default function Home(props) {
           language={'javascript'}
         ></Code>
       ) : null}
-      {code.showPopUp ? <CodePopUp></CodePopUp> : null}
+      {props.state.showCodePopUp ? (
+        <CodePopUp
+          state={props.state}
+          setState={props.setState}
+          code={code}
+          setCode={setCode}
+        ></CodePopUp>
+      ) : null}
     </div>
   );
 }

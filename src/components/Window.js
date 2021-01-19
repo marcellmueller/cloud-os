@@ -15,11 +15,11 @@ export default function Window(props) {
   const close = (event) => {
     const keyName = 'show' + props.name;
     const openApps = props.state.openApps;
-
     const index = openApps.indexOf(props.name);
     if (index > -1) {
       openApps.splice(index, 1);
     }
+
     props.setState({
       ...props.state,
       showMenu: false,

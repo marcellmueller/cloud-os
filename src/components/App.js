@@ -13,6 +13,7 @@ export default function App() {
     showCalendar: false,
     showCalculator: false,
     showCode: false,
+    showCodePopUp: false,
     openApps: [],
   });
 
