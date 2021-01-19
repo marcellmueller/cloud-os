@@ -2,9 +2,12 @@ import { useState } from 'react';
 import './Desktop.scss';
 import Calculator from './Apps/Calculator';
 import Code from './Apps/Code';
+import CodePopUp from './Apps/CodePopUp';
 
 export default function Home(props) {
-  const [code, setCode] = useState(`let moveUp = (map) => {
+  const [code, setCode] = useState({
+    showPopUp: false,
+    content: `let moveUp = (map) => {
     let location = findLocation(map, playerLocation);
     if (map[location[0] - 1][location[1]] !== 'x') {
       clearPlayer(playerLocation);
@@ -16,28 +19,8 @@ export default function Home(props) {
         '<img id="playerGIF" src="img/up.png" width="50%" height="50%" />';
       changeArea(map, location);
     }
-  };
-  
-  let changeArea = (map, location) => {
-    if (map[location[0]][location[1]][1] === 'a') {
-      map = eval(map[location[0]][[location[1]]]);
-      tileMap = eval(map[location[0]][[location[1]]] + 'Tiles');
-      grid.innerHTML = '';
-      displayMap(map, tileMap);
-    }
-  };
-  
-  let moveDown = (map) => {
-    let location = findLocation(map, playerLocation);
-    if (map[location[0] + 1][location[1]] !== 'x') {
-      clearPlayer(playerLocation);
-      location[0] += 1;
-      playerLocation = map[location[0]][location[1]];
-      let player = document.getElementById(playerLocation);
-      player.innerHTML =
-        '<img id="playerGIF" src="img/down.png" width="50%" height="50%" />';
-    } else console.log("You can't move here");
-  };`);
+  };`,
+  });
 
   const toggle = () => {
     props.setState({
@@ -67,7 +50,7 @@ export default function Home(props) {
           language={'javascript'}
         ></Code>
       ) : null}
-      {/* <Window></Window> */}
+      {code.showPopUp ? <CodePopUp></CodePopUp> : null}
     </div>
   );
 }

@@ -32,13 +32,13 @@ export default function Window(props) {
   return (
     <Rnd
       default={{
-        x: 150,
-        y: 105,
-        width: 500,
-        height: 400,
+        x: props.x,
+        y: props.y,
+        width: props.width,
+        height: props.height,
       }}
-      minWidth={500}
-      minHeight={420}
+      minWidth={props.width}
+      minHeight={props.height}
       bounds="window"
       onClick={(e) => e.stopPropagation()}
     >

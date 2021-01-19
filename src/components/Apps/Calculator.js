@@ -250,6 +250,10 @@ export default function Loading(props) {
       setCalcState={calcState}
       state={props.state}
       setState={props.setState}
+      width={450}
+      height={400}
+      x={250}
+      y={55}
       name={'Calculator'}
       display={calc}
     ></Window>
