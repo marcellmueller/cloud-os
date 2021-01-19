@@ -40,11 +40,21 @@ export default function Login(props) {
     return promise;
   };
 
+  const guest = () => {
+    props.setUser({
+      firstName: 'Guest',
+      lastName: '',
+      email: 'Guest',
+      password: 'password',
+      password2: 'password2',
+    });
+    props.history.push('/');
+  };
+
   return (
     <div className="login-body">
       <section className="login">
         <form className="login-form" method="POST" action="/login">
-          <h2 className="login-title">Login</h2>
           <h3>Email:</h3>
           <input
             onChange={emailOnChange}
@@ -65,6 +75,10 @@ export default function Login(props) {
             Login
           </button>
         </form>
+        <h3 className="guest-title">Sign in as guest</h3>
+        <button onClick={guest} id="guest-btn" className="login-button">
+          Guest
+        </button>
         {props.error ? <div id="error">{props.error}</div> : null}
       </section>
     </div>

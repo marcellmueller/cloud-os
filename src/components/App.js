@@ -3,10 +3,8 @@ import { Route, BrowserRouter, Redirect } from 'react-router-dom';
 import './App.scss';
 import Bios from './Startup/Bios';
 import Loading from './Startup/Loading';
-
 import Nav from './nav/Nav';
-import Login from './Login';
-
+import LoginTabs from './LoginTabs';
 import Desktop from './Desktop';
 
 export default function App() {
@@ -23,7 +21,6 @@ export default function App() {
   }, [state]);
 
   const [user, setUser] = useState('');
-  // const [users, setUsers] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
@@ -81,7 +78,7 @@ export default function App() {
           <Route
             path="/login"
             render={(props) => (
-              <Login
+              <LoginTabs
                 {...props}
                 setUser={setUser}
                 error={error}
@@ -90,18 +87,7 @@ export default function App() {
               />
             )}
           />
-          {/* <Route
-            path="/create"
-            render={(props) => (
-              <Create
-                {...props}
-                setUser={setUser}
-                error={error}
-                setError={setError}
-                setMessage={setMessage}
-              />
-            )}
-          /> */}
+
           <Route
             exact
             path="/bios"

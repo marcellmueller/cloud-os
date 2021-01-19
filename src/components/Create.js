@@ -3,11 +3,13 @@ import axios from 'axios';
 import './Create.scss';
 
 export default function Create(props) {
-  const [firstName, setFirstName] = useState('');
-  const [lastName, setLastName] = useState('');
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-  const [password2, setPassword2] = useState('');
+  const [account, setAccount] = useState({
+    firstName: '',
+    lastName: '',
+    email: '',
+    password: '',
+    password2: '',
+  });
 
   useEffect(() => {
     const passwordError = (password, password2) => {
@@ -17,38 +19,53 @@ export default function Create(props) {
         props.setError('');
       }
     };
-    passwordError(password, password2);
-  }, [password, password2, props]);
+    passwordError(account.password, account.password2);
+  }, [account, props]);
 
   const firstNameOnChange = (event) => {
-    setFirstName(event.target.value);
+    setAccount({
+      ...account,
+      firstName: event.target.value,
+    });
   };
 
   const lastNameOnChange = (event) => {
-    setLastName(event.target.value);
+    setAccount({
+      ...account,
+      lastName: event.target.value,
+    });
   };
 
   const emailOnChange = (event) => {
-    setEmail(event.target.value);
+    setAccount({
+      ...account,
+      email: event.target.value,
+    });
   };
 
   const passwordOnChange = (event) => {
-    setPassword(event.target.value);
+    setAccount({
+      ...account,
+      password: event.target.value,
+    });
   };
 
   const password2OnChange = (event) => {
-    setPassword2(event.target.value);
+    setAccount({
+      ...account,
+      password2: event.target.value,
+    });
   };
 
   const create = (event) => {
     event.preventDefault();
 
     const data = {
-      firstName: firstName,
-      lastName: lastName,
-      email: email,
-      password: password,
-      password2: password2,
+      firstName: account.firstName,
+      lastName: account.lastName,
+      email: account.email,
+      password: account.password,
+      password2: account.password2,
     };
     const URL = `/create/`;
     const promise = axios
@@ -79,9 +96,8 @@ export default function Create(props) {
   };
 
   return (
-    <section className="login">
+    <section className="create-form">
       <form className="login-form" method="POST" action="/login">
-        <h2 id="login-title">Create User</h2>
         <h3>First Name:</h3>
         <input
           type="text"
@@ -101,7 +117,7 @@ export default function Create(props) {
         <h3>Email:</h3>
         <input
           type="email"
-          className="login-email"
+          className="create-email"
           required
           name="email"
           onChange={emailOnChange}
@@ -110,7 +126,7 @@ export default function Create(props) {
         <input
           type="password"
           minLength="6"
-          className="login-password"
+          className="create-password"
           required
           name="password"
           onChange={passwordOnChange}
@@ -119,13 +135,18 @@ export default function Create(props) {
         <input
           type="password"
           minLength="6"
-          className="login-password"
+          className="create-password"
           required
           name="password2"
           onChange={password2OnChange}
         />
-        <button onClick={create} type="submit" className="login-button">
-          Login
+        <button
+          onClick={create}
+          type="submit"
+          id="create-button"
+          className="login-button"
+        >
+          Create
         </button>
       </form>
       {props.error ? <div id="error">{props.error}</div> : null}

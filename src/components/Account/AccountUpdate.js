@@ -12,36 +12,57 @@ export default function AccountUpdate(props) {
       }
     };
     passwordError(props.password, props.password2);
-  }, [props.password, props.password2, props]);
+  }, [props.account, props]);
 
   const firstNameOnChange = (event) => {
-    props.setFirstName(event.target.value);
+    props.setAccount({
+      ...props.account,
+      firstName: event.target.value,
+    });
   };
 
   const lastNameOnChange = (event) => {
-    props.setLastName(event.target.value);
+    props.setAccount({
+      ...props.account,
+      lastName: event.target.value,
+    });
   };
 
   const emailOnChange = (event) => {
-    props.setEmail(event.target.value);
+    props.setAccount({
+      ...props.account,
+      email: event.target.value,
+    });
   };
 
   const passwordOnChange = (event) => {
-    props.setPassword(event.target.value);
+    props.setAccount({
+      ...props.account,
+      password: event.target.value,
+    });
   };
 
   const password2OnChange = (event) => {
-    props.setPassword2(event.target.value);
+    props.setAccount({
+      ...props.account,
+      password2: event.target.value,
+    });
   };
 
   const update = (event) => {
     event.preventDefault();
 
-    const firstName = props.firstName ? props.firstName : props.user.firstname;
-    const lastName = props.lastName ? props.lastName : props.user.lastname;
-    const email = props.email ? props.email : props.user.email;
-    const password = props.password ? props.password : props.user.password;
-    const password2 = props.password2;
+    const firstName = props.account.firstName
+      ? props.account.firstName
+      : props.user.firstname;
+    const lastName = props.account.lastName
+      ? props.account.lastName
+      : props.user.lastname;
+    const email = props.account.email ? props.account.email : props.user.email;
+    const password = props.account.password
+      ? props.account.password
+      : props.user.password;
+    const password2 = props.account.password2;
     const data = {
       id: props.user.id,
       firstName: firstName,
@@ -64,10 +85,10 @@ export default function AccountUpdate(props) {
         props.setUser((prevState) => {
           return {
             ...prevState,
-            firstname: props.firstName,
-            lastname: props.lastName,
-            email: props.email,
-            password: props.password,
+            firstname: props.account.firstName,
+            lastname: props.account.lastName,
+            email: props.account.email,
+            password: props.account.password,
           };
         });
       })

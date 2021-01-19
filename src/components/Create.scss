@@ -1,5 +1,12 @@
 @import '../index.scss';
 
+.create-form {
+  display: block;
+  width: 90%;
+  margin-left: auto;
+  margin-right: auto;
+  padding-bottom: 16px;
+}
 .login-name {
   border: 0;
   border-bottom: solid;
@@ -8,7 +15,7 @@
   width: 90%;
   margin-bottom: 0.5em;
   padding-left: 30px;
-  background: url(/img/icons/userdark.png) no-repeat scroll;
+  background: url(/img/icons/data.png) no-repeat scroll;
   background-size: 24px 24px;
   padding-left: 30px;
 }
@@ -19,4 +26,47 @@
   font-size: 20px;
   font-weight: bolder;
   color: $error;
+}
+
+.create-email {
+  border: 0;
+  border-bottom: solid;
+  border-color: $darkshades;
+  display: block;
+  width: 90%;
+  margin-bottom: 0.5em;
+  padding-left: 30px;
+  background: url(/img/icons/mail.png) no-repeat scroll;
+  background-size: 24px 24px;
+  padding-left: 30px;
+}
+
+.create-password {
+  border: 0;
+  border-bottom: solid;
+  border-color: $darkshades;
+  display: block;
+  width: 90%;
+  margin-bottom: 0.5em;
+  background: url(/img/icons/keys.png) no-repeat scroll;
+  background-size: 24px 24px;
+  padding-left: 30px;
+}
+
+.create-button {
+  display: block;
+  background-color: $nav-light;
+  color: $nav-dark;
+  width: 140px;
+  margin-left: auto;
+  margin-right: auto;
+  border: none;
+  padding: 0.2em;
+  font-family: 'VT323', monospace;
+  font-weight: bolder;
+  font-size: 24px;
+}
+.create-button:hover {
+  color: $lightaccent;
+  background-color: $darkshades;
 }
