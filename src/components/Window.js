@@ -33,9 +33,9 @@ export default function Window(props) {
     <Rnd
       default={{
         x: 150,
-        y: 205,
+        y: 105,
         width: 500,
-        height: 190,
+        height: 400,
       }}
       minWidth={500}
       minHeight={420}
@@ -57,7 +57,9 @@ export default function Window(props) {
           </button>
         </section>
       </nav>
-      <section className="window">{props.display}</section>
+      <section className="window" onClick={(e) => e.stopPropagation()}>
+        {props.display}
+      </section>
     </Rnd>
   );
 }

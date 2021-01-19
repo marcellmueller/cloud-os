@@ -1,9 +1,9 @@
 @import '../index.scss';
 
 .window {
-  height: 100%;
+  height: 90%;
   border-style: solid;
-  background-color: $nav-light;
+  background-color: $nav-dark;
   cursor: default !important;
 }
 .window-nav {
