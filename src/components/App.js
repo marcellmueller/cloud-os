@@ -14,6 +14,7 @@ export default function App() {
     showCalculator: false,
     showCode: false,
     showCodePopUp: false,
+    showTunes: false,
     openApps: [],
   });
 

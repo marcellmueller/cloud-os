@@ -3,6 +3,7 @@ import './Desktop.scss';
 import Calculator from './Calculator/Calculator';
 import Code from './Code/Code';
 import CodePopUp from './Code/CodePopUp';
+import Tunes from './Tunes/Tunes';
 
 export default function Home(props) {
   const [code, setCode] = useState({
@@ -66,6 +67,13 @@ export default function Home(props) {
           user={props.user}
           setCode={setCode}
         ></CodePopUp>
+      ) : null}
+      {props.state.showTunes ? (
+        <Tunes
+          state={props.state}
+          setState={props.setState}
+          user={props.user}
+        ></Tunes>
       ) : null}
     </div>
   );

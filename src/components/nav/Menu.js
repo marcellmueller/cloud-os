@@ -53,7 +53,7 @@ export default function UserList(props) {
     },
     {
       id: 6,
-      name: 'Brightness',
+      name: 'Tunes',
       last_used: Date.now(),
     },
     {
