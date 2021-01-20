@@ -9,6 +9,7 @@ export default function CodeOpen(props) {
     showPrivate: false,
     bgActive: 'red',
     bgInActive: 'green',
+    fileId: 0,
     shared: [],
     private: [],
   });
@@ -58,9 +59,49 @@ export default function CodeOpen(props) {
   };
 
   const selectFile = (event) => {
-    console.log(event.target.value);
+    setOpen({
+      ...open,
+      fileId: event.target.value,
+    });
   };
 
+  const openPrivate = () => {
+    let file = open.private.find(
+      (x) => parseInt(x.id) === parseInt(open.fileId)
+    );
+    console.log(file);
+    props.setCode({
+      ...props.code,
+      name: file.name,
+      extension: file.extension,
+      content: file.content,
+    });
+    props.setState({
+      ...props.state,
+      showMenu: false,
+      showCalendar: false,
+      showCodePopUp: false,
+    });
+  };
+
+  const openShared = () => {
+    let file = open.shared.find(
+      (x) => parseInt(x.id) === parseInt(open.fileId)
+    );
+    console.log(file);
+    props.setCode({
+      ...props.code,
+      name: file.name,
+      extension: file.extension,
+      content: file.content,
+    });
+    props.setState({
+      ...props.state,
+      showMenu: false,
+      showCalendar: false,
+      showCodePopUp: false,
+    });
+  };
   const mapPrivate = open.private.map((file) => {
     return (
       <File
@@ -84,9 +125,6 @@ export default function CodeOpen(props) {
       />
     );
   });
-  useEffect(() => {
-    console.log(open);
-  }, [open, mapPrivate, mapShared]);
 
   return (
     <>
@@ -125,7 +163,7 @@ export default function CodeOpen(props) {
             <button onClick={showFolders} className="open-code-button">
               Back
             </button>
-            <button onClick={showFolders} className="open-code-button">
+            <button onClick={openShared} className="open-code-button">
               Open
             </button>
           </div>
@@ -144,7 +182,7 @@ export default function CodeOpen(props) {
             <button onClick={showFolders} className="open-code-button">
               Back
             </button>
-            <button onClick={showFolders} className="open-code-button">
+            <button onClick={openPrivate} className="open-code-button">
               Open
             </button>
           </div>

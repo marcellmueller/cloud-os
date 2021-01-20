@@ -37,6 +37,9 @@ export default function CodePopUp(props) {
     <CodeOpen
       user={props.user}
       code={props.code}
+      setCode={props.setCode}
+      state={props.state}
+      setState={props.setState}
       newClick={newClick}
       cancelClick={cancelClick}
     ></CodeOpen>

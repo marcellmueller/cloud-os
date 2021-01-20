@@ -89,6 +89,7 @@ export default function CodeSave(props) {
           type="text"
           className="login-name"
           required
+          pattern="[a-zA-Z0-9-_]+"
           name="lastName"
           value={save.name}
           onChange={nameOnChange}
