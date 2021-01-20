@@ -17,10 +17,6 @@ export default function App() {
     openApps: [],
   });
 
-  useEffect(() => {
-    console.log(state);
-  }, [state]);
-
   const [user, setUser] = useState('');
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
@@ -44,6 +40,10 @@ export default function App() {
   //     })
   //     .catch(console.log('error'));
   // }, []);
+
+  useEffect(() => {
+    console.log(user);
+  }, [user]);
 
   return (
     <BrowserRouter>

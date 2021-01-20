@@ -42,6 +42,7 @@ export default function Login(props) {
 
   const guest = () => {
     props.setUser({
+      id: 2,
       firstName: 'Guest',
       lastName: '',
       email: 'Guest',

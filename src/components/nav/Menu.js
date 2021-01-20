@@ -18,7 +18,7 @@ export default function UserList(props) {
         console.log('hello');
       })
       .catch(function (error) {
-        props.setError('500 Error');
+        console.log('error');
       });
     history.push('/login');
 

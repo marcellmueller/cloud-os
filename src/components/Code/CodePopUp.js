@@ -24,17 +24,32 @@ export default function CodePopUp(props) {
     });
   };
 
-  console.log(props.code.new);
   const newDisplay = (
-    <CodeNew newClick={newClick} cancelClick={cancelClick}></CodeNew>
+    <CodeNew
+      code={props.code}
+      setState={props.setState}
+      newClick={newClick}
+      cancelClick={cancelClick}
+    ></CodeNew>
   );
 
   const openDisplay = (
-    <CodeOpen newClick={newClick} cancelClick={cancelClick}></CodeOpen>
+    <CodeOpen
+      code={props.code}
+      newClick={newClick}
+      cancelClick={cancelClick}
+    ></CodeOpen>
   );
 
   const saveDisplay = (
-    <CodeSave newClick={newClick} cancelClick={cancelClick}></CodeSave>
+    <CodeSave
+      user={props.user}
+      code={props.code}
+      state={props.state}
+      setState={props.setState}
+      newClick={newClick}
+      cancelClick={cancelClick}
+    ></CodeSave>
   );
   let width;
   let height;

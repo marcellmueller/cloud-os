@@ -7,7 +7,10 @@ import 'ace-builds/src-noconflict/theme-monokai';
 import 'ace-builds/webpack-resolver';
 export default function Code(props) {
   function onChange(newValue) {
-    props.setCode(newValue);
+    props.setCode({
+      ...props.code,
+      content: newValue,
+    });
   }
 
   const display = (
@@ -20,7 +23,7 @@ export default function Code(props) {
       ></CodeNav>
       <AceEditor
         value={props.code.content}
-        mode="javascript"
+        mode={props.code.extension}
         theme="monokai"
         width="100%"
         height="93%"

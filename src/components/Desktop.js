@@ -9,6 +9,8 @@ export default function Home(props) {
     new: true,
     open: false,
     save: false,
+    name: 'test',
+    extension: 'javascript',
     content: `let moveUp = (map) => {
     let location = findLocation(map, playerLocation);
     if (map[location[0] - 1][location[1]] !== 'x') {
@@ -57,6 +59,7 @@ export default function Home(props) {
           state={props.state}
           setState={props.setState}
           code={code}
+          user={props.user}
           setCode={setCode}
         ></CodePopUp>
       ) : null}
