@@ -6,7 +6,7 @@ import Code from './Code';
 export default function CodeSave(props) {
   const [save, setSave] = useState({
     user_id: 0,
-    name: props.code.name,
+    name: '',
     extension: 'js',
     content: '',
     shared: false,
@@ -14,8 +14,11 @@ export default function CodeSave(props) {
   });
 
   useEffect(() => {
-    console.log(save);
-  }, [save]);
+    setSave({
+      ...save,
+      name: props.code.name,
+    });
+  }, []);
 
   const nameOnChange = (event) => {
     setSave({
@@ -87,10 +90,11 @@ export default function CodeSave(props) {
           className="login-name"
           required
           name="lastName"
-          value={props.code.name}
+          value={save.name}
           onChange={nameOnChange}
         />
         <h3>Private or Shared:</h3>
+
         <select
           onChange={sharedOnChange}
           name="shared"
@@ -112,7 +116,7 @@ export default function CodeSave(props) {
         <button
           onClick={savePost}
           type="submit"
-          id="create-button"
+          id="save-button"
           className="login-button"
         >
           Save

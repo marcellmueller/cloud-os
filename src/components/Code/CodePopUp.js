@@ -35,6 +35,7 @@ export default function CodePopUp(props) {
 
   const openDisplay = (
     <CodeOpen
+      user={props.user}
       code={props.code}
       newClick={newClick}
       cancelClick={cancelClick}
@@ -63,12 +64,12 @@ export default function CodePopUp(props) {
   if (props.code.open) {
     display = openDisplay;
     width = 400;
-    height = 200;
+    height = 240;
   }
   if (props.code.save) {
     display = saveDisplay;
     width = 400;
-    height = 200;
+    height = 240;
   }
   return (
     <Window

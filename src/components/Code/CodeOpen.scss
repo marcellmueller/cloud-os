@@ -1,0 +1,58 @@
+@import '../../index';
+
+.open-file-system {
+  display: block;
+}
+
+.open-file-system:hover {
+  background-color: $nav-dark;
+  color: $nav-light;
+}
+#open-shared-icon {
+  display: inline;
+}
+
+#open-private-icon {
+  display: inline;
+}
+
+.open-file-h3 {
+  display: inline;
+}
+
+.open-file-private,
+.open-file-shared {
+  background-color: $nav-light;
+  color: $nav-dark;
+  height: 100%;
+}
+
+.open-file-buttons {
+  display: inline;
+  position: fixed;
+  bottom: -15;
+  width: 98%;
+  background-color: $nav-light;
+}
+
+.open-code-button {
+  display: inline;
+  background-color: $nav-dark;
+  color: $nav-light;
+  width: 140px;
+  margin-left: 6px;
+  margin-right: 6px;
+  border: none;
+  font-family: 'VT323', monospace;
+  font-weight: bolder;
+  font-size: 24px;
+}
+.open-code-button:hover {
+  color: $lightaccent;
+  background-color: $darkshades;
+}
+
+.file-list {
+  overflow-y: scroll;
+  height: 80%;
+}

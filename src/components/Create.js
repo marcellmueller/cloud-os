@@ -81,7 +81,7 @@ export default function Create(props) {
         }
         if (response.data.email) {
           props.setMessage('Account created');
-          props.history.push('/message');
+          props.history.push('/');
         }
       })
       .then({})

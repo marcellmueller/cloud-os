@@ -33,6 +33,7 @@ const createRoutes = require('./src/routes/create');
 const updateRoutes = require('./src/routes/update');
 const postsRoutes = require('./src/routes/posts');
 const saveRoutes = require('./src/routes/save');
+const openRoutes = require('./src/routes/open');
 
 //use routes
 app.use('/login', loginRoutes(db));
@@ -41,6 +42,7 @@ app.use('/create', createRoutes(db));
 app.use('/update', updateRoutes(db));
 app.use('/posts', postsRoutes(db));
 app.use('/save', saveRoutes(db));
+app.use('/open', openRoutes(db));
 
 app.get('/', (req, res) => {
   console.log(req.session);

@@ -21,26 +21,6 @@ export default function App() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
-  // useEffect(() => {
-  //   Promise.all([axios.get('/login'), axios.get('/users'), axios.get('/posts')])
-  //     .then((all) => {
-  //       if (all[0].data) {
-  //         setUser(all[0].data);
-  //         history.push('/');
-  //       } else {
-  //         setUser('');
-  //         history.push('/login');
-  //       }
-  //       if (all[1].data) {
-  //         setUsers(all[1].data);
-  //       }
-  //       if (all[2].data) {
-  //         setPosts(all[2].data);
-  //       }
-  //     })
-  //     .catch(console.log('error'));
-  // }, []);
-
   useEffect(() => {
     console.log(user);
   }, [user]);
