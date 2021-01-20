@@ -21,11 +21,10 @@ module.exports = (db) => {
   });
 
   router.post('/shared', (req, res) => {
-    const user_id = req.body.user_id;
     db.query(
       `SELECT * FROM code_files
-                WHERE user_id = $1`,
-      [user_id]
+                WHERE shared = true;`,
+      []
     )
       .then((data) => {
         if (data) {

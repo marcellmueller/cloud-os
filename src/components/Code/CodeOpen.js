@@ -57,12 +57,32 @@ export default function CodeOpen(props) {
     });
   };
 
+  const selectFile = (event) => {
+    console.log(event.target.value);
+  };
+
   const mapPrivate = open.private.map((file) => {
-    return <File key={file.id} name={file.name} extension={file.extension} />;
+    return (
+      <File
+        key={file.id}
+        id={file.id}
+        name={file.name}
+        extension={file.extension}
+        selectFile={selectFile}
+      />
+    );
   });
 
   const mapShared = open.shared.map((file) => {
-    return <File key={file.id} name={file.name} extension={file.extension} />;
+    return (
+      <File
+        key={file.id}
+        id={file.id}
+        name={file.name}
+        extension={file.extension}
+        selectFile={selectFile}
+      />
+    );
   });
   useEffect(() => {
     console.log(open);
@@ -94,7 +114,13 @@ export default function CodeOpen(props) {
       ) : null}
       {open.showShared ? (
         <div className="open-file-shared">
-          <div className="file-list">{mapShared}</div>
+          <select
+            className="file-list"
+            name="file-list"
+            size={open.shared.length + 1}
+          >
+            {mapShared}
+          </select>
           <div className="open-file-buttons">
             <button onClick={showFolders} className="open-code-button">
               Back
@@ -107,7 +133,13 @@ export default function CodeOpen(props) {
       ) : null}
       {open.showPrivate ? (
         <div className="open-file-private">
-          <div className="file-list">{mapPrivate}</div>
+          <select
+            className="file-list"
+            name="file-list"
+            size={open.private.length + 1}
+          >
+            {mapPrivate}
+          </select>{' '}
           <div className="open-file-buttons">
             <button onClick={showFolders} className="open-code-button">
               Back

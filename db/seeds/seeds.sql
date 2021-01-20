@@ -6,7 +6,7 @@ INSERT INTO posts (user_id, title, content, category, posted_date)
 VALUES (1, 'First Post', 'Testing post layouts', '#firstpost', CLOCK_TIMESTAMP()),
 (1, 'Second Post', 'Testing post layouts', '#secondpost', CLOCK_TIMESTAMP());
 
-INSERT INTO code_files (user_id, name, extension, content) 
-VALUES (1, 'test', 'js', 'let moveUp = string');
+INSERT INTO code_files (user_id, name, extension, content, shared) 
+VALUES (1, 'test', 'js', 'let moveUp = string', true);
 
 
