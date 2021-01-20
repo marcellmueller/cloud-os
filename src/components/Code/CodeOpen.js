@@ -88,7 +88,6 @@ export default function CodeOpen(props) {
     let file = open.shared.find(
       (x) => parseInt(x.id) === parseInt(open.fileId)
     );
-    console.log(file);
     props.setCode({
       ...props.code,
       name: file.name,

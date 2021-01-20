@@ -28,6 +28,7 @@ export default function CodeSave(props) {
   };
 
   const sharedOnChange = (event) => {
+    console.log(save);
     setSave({
       ...save,
       shared: event.target.value === 'true' ? true : false,
@@ -35,6 +36,8 @@ export default function CodeSave(props) {
   };
 
   const extensionOnChange = (event) => {
+    console.log(save);
+
     setSave({
       ...save,
       extension: event.target.value,

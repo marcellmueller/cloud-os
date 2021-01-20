@@ -5,7 +5,8 @@ module.exports = (db) => {
     const user_id = req.body.user_id;
     db.query(
       `SELECT * FROM code_files
-                WHERE user_id = $1`,
+                WHERE user_id = $1
+                AND shared = false;`,
       [user_id]
     )
       .then((data) => {

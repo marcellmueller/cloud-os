@@ -7,6 +7,8 @@ VALUES (1, 'First Post', 'Testing post layouts', '#firstpost', CLOCK_TIMESTAMP()
 (1, 'Second Post', 'Testing post layouts', '#secondpost', CLOCK_TIMESTAMP());
 
 INSERT INTO code_files (user_id, name, extension, content, shared) 
-VALUES (1, 'test', 'js', 'let moveUp = string', true);
+VALUES (1, 'test', 'js', 'let moveUp = string', true),
+(1, 'htmltest', 'html', '<html><title>TEST</title></html>', true);
+
 
 

@@ -23,7 +23,9 @@ export default function Code(props) {
       ></CodeNav>
       <AceEditor
         value={props.code.content}
-        mode={props.code.extension}
+        mode={
+          props.code.extension === 'js' ? 'javascript' : props.code.extension
+        }
         theme="monokai"
         width="100%"
         height="93%"

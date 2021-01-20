@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './Desktop.scss';
 import Calculator from './Calculator/Calculator';
 import Code from './Code/Code';
@@ -25,6 +25,10 @@ export default function Home(props) {
     }
   };`,
   });
+
+  useEffect(() => {
+    console.log(code);
+  }, [code]);
 
   const toggle = () => {
     props.setState({
