@@ -67,6 +67,29 @@ export default function TerminalApp(props) {
       return file.name + '.' + file.extension;
     });
 
+    if (content === 'help') {
+      message = (
+        <>
+          GNU bash, version 2.0.17-release (x86_32-pc-linux-gnu) These shell
+          commands are defined internally. Type 'help' to see this list.
+          <br />
+          . filename [arguments]
+          <br />
+          cd [filename/directory]
+          <br />
+          rm [filename]
+          <br />
+          rm -rf [directory]
+          <br />
+          whoami
+          <br />
+          help
+          <br />
+          ls
+          <br />
+        </>
+      );
+    }
     if (content === 'cd') {
       command = '';
       message = <></>;
