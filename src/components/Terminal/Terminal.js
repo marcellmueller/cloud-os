@@ -35,6 +35,23 @@ export default function TerminalApp(props) {
     console.log(terminal.command);
   }, [terminal.command]);
 
+  const deleteFile = (name, extension, user_id, shared) => {
+    const data = { name, extension, user_id, shared };
+    const URL = `/delete/`;
+    const promise = axios
+      .post(URL, data)
+      .then((response) => {
+        console.log(response);
+        console.log('file deleted');
+      })
+      .catch(function (error) {
+        console.log('hello');
+      });
+
+    return promise;
+  };
+
+  //terminal commands function. Could probably use a refactor.
   const terminalEnter = (event) => {
     event.preventDefault();
     const output = [...terminal.output];
@@ -66,8 +83,29 @@ export default function TerminalApp(props) {
       message = <>/Shared</>;
     }
     if (content === 'whoami') {
-      message = <>{props.user.firstname}</>;
+      message = <>{props.user.firstname.toLowerCase()}</>;
     }
+
+    if (content.split(' ').length === 2 && content.split(' ')[0] === 'rm') {
+      let file = content.split(' ')[1];
+      let fileName = file.split('.')[0];
+      let extension = file.split('.')[1];
+      let user_id = props.user.id;
+      message = `${file} not found`;
+      if (terminal.command === 'private' && privateFiles.includes(file)) {
+        console.log('hello there');
+        let shared = false;
+        deleteFile(fileName, extension, user_id, shared);
+        message = `${file} deleted`;
+      }
+      if (terminal.command === 'shared' && privateFiles.includes(file)) {
+        console.log('hello there');
+        let shared = true;
+        deleteFile(fileName, extension, user_id, shared);
+        message = `${file} deleted`;
+      }
+    }
+
     if (content === 'rm') {
       message = (
         <>
@@ -119,6 +157,7 @@ export default function TerminalApp(props) {
         message = <>{sharedFiles.join(' ')}</>;
       }
     }
+
     output.push({ name: name, content: content, message: message });
     setTerminal({
       ...terminal,
@@ -128,6 +167,7 @@ export default function TerminalApp(props) {
     });
   };
 
+  //update state with terminal input as its typed
   const terminalName = terminal.name + terminal.symbol;
   const terminalInput = (event) => {
     setTerminal({
@@ -135,6 +175,8 @@ export default function TerminalApp(props) {
       input: event.target.value,
     });
   };
+
+  //map terminal output
   let key = 0;
   const terminalOutput = terminal.output.map((line) => {
     key++;
@@ -147,6 +189,7 @@ export default function TerminalApp(props) {
       />
     );
   });
+
   const display = (
     <div className="terminal">
       <div className="terminal-output">{terminalOutput}</div>
