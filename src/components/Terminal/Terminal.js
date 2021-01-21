@@ -104,6 +104,56 @@ export default function TerminalApp(props) {
         deleteFile(fileName, extension, user_id, shared);
         message = `${file} deleted`;
       }
+      setTerminal({
+        ...terminal,
+      });
+    }
+
+    if (content.split(' ').length === 2 && content.split(' ')[0] === 'code') {
+      let file = content.split(' ')[1];
+      let fileName = file.split('.')[0];
+      if (terminal.command === 'private' && privateFiles.includes(file)) {
+        let openFile = props.open.private.find((file, index) => {
+          if (file.name == fileName) return props.open.private[index];
+        });
+        props.setCode({
+          ...props.code,
+          name: openFile.name,
+          extension: openFile.extension,
+          content: openFile.content,
+        });
+        props.setState({
+          ...props.state,
+          showMenu: false,
+          showCalendar: false,
+          showCode: true,
+        });
+        setTerminal({
+          ...terminal,
+        });
+        message = `Opening ${file}...`;
+      }
+      if (terminal.command === 'shared' && privateFiles.includes(file)) {
+        let openFile = props.open.shared.find((file, index) => {
+          if (file.name == fileName) return props.open.shared[index];
+        });
+        props.setCode({
+          ...props.code,
+          name: openFile.name,
+          extension: openFile.extension,
+          content: openFile.content,
+        });
+        props.setState({
+          ...props.state,
+          showMenu: false,
+          showCalendar: false,
+          showCode: true,
+        });
+        setTerminal({
+          ...terminal,
+        });
+        message = `Opening ${file}...`;
+      }
     }
 
     if (content === 'rm') {

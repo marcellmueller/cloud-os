@@ -93,6 +93,8 @@ export default function Desktop(props) {
         <Terminal
           open={open}
           setOpen={setOpen}
+          code={code}
+          setCode={setCode}
           state={props.state}
           setState={props.setState}
           user={props.user}

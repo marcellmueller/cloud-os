@@ -19,7 +19,7 @@ module.exports = (db) => {
       `DELETE FROM code_files
             WHERE name = '${name}'
             AND extension = '${extension}'
-            AND shared = false
+            AND shared = ${shared}
             AND user_id = ${user_id};`,
       []
     )
