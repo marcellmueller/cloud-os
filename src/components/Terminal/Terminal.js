@@ -29,20 +29,14 @@ export default function TerminalApp(props) {
       })
       .catch(console.log('error'));
   }, []);
+  let command = '';
 
   const terminalEnter = (event) => {
     event.preventDefault();
     const output = [...terminal.output];
     const name = terminal.name + terminal.symbol;
-    const content = terminal.input;
-    let message = '';
-    if (content.trim() === 'ls') {
-      message = (
-        <>
-          <b>Private</b> <b>Shared</b>
-        </>
-      );
-    }
+    const content = terminal.input.trim();
+    let message = 'Command not found';
 
     const privateFiles = props.open.private.map((file) => {
       return file.name + '.' + file.extension;
@@ -51,17 +45,27 @@ export default function TerminalApp(props) {
     const sharedFiles = props.open.shared.map((file) => {
       return file.name + '.' + file.extension;
     });
+
     console.log(sharedFiles);
-    if (content.trim() === 'cd Private') {
-      message = <>{privateFiles.join(' ')}</>;
+    if (content === 'cd') {
+      command = '';
+      message = <></>;
     }
-    if (content.trim() === 'cd Shared') {
-      message = <>{sharedFiles.join(' ')}</>;
+    if (content.length > 2 && content.slice(0, 2) === 'cd') {
+      message = <>-bash: cd: No such file or directory</>;
     }
-    if (content.trim() === 'whoami') {
+    if (content === 'cd Private') {
+      command = 'private';
+      message = <>/Private</>;
+    }
+    if (content === 'cd Shared') {
+      command = 'shared';
+      message = <>/Shared</>;
+    }
+    if (content === 'whoami') {
       message = <>{props.user.firstname}</>;
     }
-    if (content.trim() === 'rm') {
+    if (content === 'rm') {
       message = (
         <>
           rm: missing operand
@@ -70,18 +74,35 @@ export default function TerminalApp(props) {
         </>
       );
     }
-    if (content.trim() === 'rm --help') {
+    if (content === 'rm --help') {
       message = <>Usage: rm [FILE]...</>;
     }
-    if (content.trim() === 'rm Private') {
+    if (content === 'rm Private') {
       message = <>rm: cannot remove 'Private': Is a directory</>;
     }
     if (content.trim() === 'rm Shared') {
       message = <>rm: cannot remove 'Shared': Is a directory</>;
     }
 
-    if (content.trim() === 'rm -rf Private') {
+    if (content === 'rm -rf Private') {
       message = <>You don't have permission to delete this directory</>;
+    }
+
+    if (content === 'ls') {
+      console.log(command);
+      if (command === 'private') {
+        message = <>{privateFiles.join(' ')}</>;
+      }
+      if (command === 'shared') {
+        message = <>{sharedFiles.join(' ')}</>;
+      }
+      if (command === '') {
+        message = (
+          <>
+            <b>Private</b> <b>Shared</b>
+          </>
+        );
+      }
     }
     output.push({ name: name, content: content, message: message });
     setTerminal({

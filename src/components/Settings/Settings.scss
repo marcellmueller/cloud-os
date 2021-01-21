@@ -1,0 +1,49 @@
+@import '../../index';
+.settings-main {
+  width: 100%;
+  height: 100%;
+}
+
+.settings-tabs {
+  user-select: none;
+  background-color: $nav-light;
+  font-size: 24px;
+  height: 100%;
+
+  .settings-tab-parent {
+    color: $darkshades;
+    background-color: lightgrey;
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 100%;
+    border-radius: 1px;
+    border-width: 1px;
+    box-shadow: 0 4px 6px 0 rgba(0, 0, 0, 0.8);
+
+    .nav-settings-tabs {
+      display: inline;
+      .settings-tab {
+        display: inline;
+        margin: 10px;
+        padding: 2px;
+        padding-left: 10px;
+        padding-right: 10px;
+      }
+      .settings-tab:hover {
+        color: $nav-light;
+      }
+    }
+  }
+}
+
+.guest-title {
+  margin-top: 16px;
+  text-align: center;
+}
+
+//   <div className="login-tab">Login</div>
+//   <div className="create-tab">New Account</div>
+// </nav>
+
+// <div className="tabs-main">

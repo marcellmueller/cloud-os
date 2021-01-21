@@ -15,7 +15,8 @@ export default function App() {
     showCodePopUp: false,
     showTunes: false,
     showTerminal: false,
-    openApps: [],
+    showSettings: true,
+    openApps: ['Settings'],
   });
 
   const [user, setUser] = useState('');

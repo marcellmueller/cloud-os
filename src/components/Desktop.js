@@ -5,8 +5,9 @@ import Code from './Code/Code';
 import CodePopUp from './Code/CodePopUp';
 import Tunes from './Tunes/Tunes';
 import Terminal from './Terminal/Terminal';
+import Settings from './Settings/Settings';
 
-export default function Home(props) {
+export default function Desktop(props) {
   const [code, setCode] = useState({
     new: true,
     open: false,
@@ -96,6 +97,15 @@ export default function Home(props) {
           setState={props.setState}
           user={props.user}
         ></Terminal>
+      ) : null}
+      {props.state.showSettings ? (
+        <Settings
+          open={open}
+          setOpen={setOpen}
+          state={props.state}
+          setState={props.setState}
+          user={props.user}
+        ></Settings>
       ) : null}
     </div>
   );
