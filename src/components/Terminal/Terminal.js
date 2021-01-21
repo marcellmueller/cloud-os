@@ -9,6 +9,7 @@ export default function TerminalApp(props) {
     name: name,
     symbol: ':~$ ',
     input: '',
+    command: '',
     output: [],
   });
 
@@ -29,7 +30,10 @@ export default function TerminalApp(props) {
       })
       .catch(console.log('error'));
   }, []);
-  let command = '';
+
+  useEffect(() => {
+    console.log(terminal.command);
+  }, [terminal.command]);
 
   const terminalEnter = (event) => {
     event.preventDefault();
@@ -37,7 +41,7 @@ export default function TerminalApp(props) {
     const name = terminal.name + terminal.symbol;
     const content = terminal.input.trim();
     let message = 'Command not found';
-
+    let command = terminal.command;
     const privateFiles = props.open.private.map((file) => {
       return file.name + '.' + file.extension;
     });
@@ -46,7 +50,6 @@ export default function TerminalApp(props) {
       return file.name + '.' + file.extension;
     });
 
-    console.log(sharedFiles);
     if (content === 'cd') {
       command = '';
       message = <></>;
@@ -74,8 +77,20 @@ export default function TerminalApp(props) {
         </>
       );
     }
+    if (content === 'rm -rf') {
+      message = (
+        <>
+          rm: missing operand
+          <br />
+          Try 'rm --help' for more information.
+        </>
+      );
+    }
+    if (content === 'rm -help') {
+      message = <>Command not found. Did you mean 'rm --help' ?</>;
+    }
     if (content === 'rm --help') {
-      message = <>Usage: rm [FILE]...</>;
+      message = <>Usage: rm [OPTIONS]... [FILE]...</>;
     }
     if (content === 'rm Private') {
       message = <>rm: cannot remove 'Private': Is a directory</>;
@@ -89,19 +104,19 @@ export default function TerminalApp(props) {
     }
 
     if (content === 'ls') {
-      console.log(command);
-      if (command === 'private') {
-        message = <>{privateFiles.join(' ')}</>;
-      }
-      if (command === 'shared') {
-        message = <>{sharedFiles.join(' ')}</>;
-      }
-      if (command === '') {
+      if (terminal.command === '') {
         message = (
           <>
             <b>Private</b> <b>Shared</b>
           </>
         );
+      }
+      console.log(terminal.command);
+      if (terminal.command === 'private') {
+        message = <>{privateFiles.join(' ')}</>;
+      }
+      if (terminal.command === 'shared') {
+        message = <>{sharedFiles.join(' ')}</>;
       }
     }
     output.push({ name: name, content: content, message: message });
@@ -109,6 +124,7 @@ export default function TerminalApp(props) {
       ...terminal,
       output: output,
       input: '',
+      command: command,
     });
   };
 

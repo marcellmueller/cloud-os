@@ -4,7 +4,7 @@ export default function System(props) {
   return (
     <div className="system-tab">
       <h1>
-        <b>CPU: </b>Intel 80486DX2{' '}
+        <b>CPU: </b>Intel 80486DX2 @ 66MHz
       </h1>
       <h1>
         <b>RAM: </b>32768k
