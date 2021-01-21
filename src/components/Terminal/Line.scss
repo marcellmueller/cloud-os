@@ -1,0 +1,27 @@
+@import '../../index.scss';
+
+.terminal-line {
+  width: 100%;
+  display: grid;
+  grid-template-rows: 1fr;
+  grid-template-columns: 1fr 3fr;
+  font-family: 'VT323', monospace;
+  font-size: 20px;
+  color: white;
+  position: relative;
+}
+
+.terminal-line-name {
+  grid-row: 1;
+  grid-column: 1;
+  width: 29%;
+  margin-right: 4px;
+  color: lightgreen;
+}
+
+.terminal-line-content {
+  width: 70%;
+  grid-row: 1;
+  grid-column: 2;
+  color: white;
+}

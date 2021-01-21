@@ -1,14 +1,12 @@
 import { useState, useEffect } from 'react';
 import Window from '../Window';
 import './Tunes.scss';
-
 export default function Loading(props) {
   const [tunes, setTunes] = useState('');
+
   // useEffect(() => {
   //   console.log(calcState);
   // }, [calcState]);
-
-  const display = <div className="tunes">TUNES</div>;
 
   return (
     <Window
@@ -19,7 +17,7 @@ export default function Loading(props) {
       x={350}
       y={255}
       name={'Tunes'}
-      display={display}
+      display={true}
     ></Window>
   );
 }

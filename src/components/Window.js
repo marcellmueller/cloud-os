@@ -30,36 +30,38 @@ export default function Window(props) {
   };
 
   return (
-    <Rnd
-      default={{
-        x: props.x,
-        y: props.y,
-        width: props.width,
-        height: props.height,
-      }}
-      minWidth={props.width}
-      minHeight={props.height}
-      bounds="window"
-      onClick={(e) => e.stopPropagation()}
-    >
-      <nav className="window-nav">
-        <section className="window-nav-buttons">
-          <button onClick={toggle} className="window-nav-button">
-            _
-          </button>
-          <button onClick={close} className="window-nav-button">
-            {' '}
-            <img
-              alt="logo"
-              className="window-close"
-              src="/img/icons/close.png"
-            />
-          </button>
+    <>
+      <Rnd
+        default={{
+          x: props.x,
+          y: props.y,
+          width: props.width,
+          height: props.height,
+        }}
+        minWidth={props.width}
+        minHeight={props.height}
+        bounds="window"
+        onClick={(e) => e.stopPropagation()}
+      >
+        <nav className="window-nav">
+          <section className="window-nav-buttons">
+            <button onClick={toggle} className="window-nav-button">
+              _
+            </button>
+            <button onClick={close} className="window-nav-button">
+              {' '}
+              <img
+                alt="logo"
+                className="window-close"
+                src="/img/icons/close.png"
+              />
+            </button>
+          </section>
+        </nav>
+        <section className="window" onClick={(e) => e.stopPropagation()}>
+          {props.display}
         </section>
-      </nav>
-      <section className="window" onClick={(e) => e.stopPropagation()}>
-        {props.display}
-      </section>
-    </Rnd>
+      </Rnd>
+    </>
   );
 }

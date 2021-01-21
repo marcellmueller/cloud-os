@@ -6,7 +6,6 @@ import Loading from './Startup/Loading';
 import Nav from './nav/Nav';
 import LoginTabs from './LoginTabs';
 import Desktop from './Desktop';
-
 export default function App() {
   const [state, setState] = useState({
     showMenu: false,
@@ -15,6 +14,7 @@ export default function App() {
     showCode: false,
     showCodePopUp: false,
     showTunes: false,
+    showTerminal: false,
     openApps: [],
   });
 

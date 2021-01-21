@@ -4,6 +4,7 @@ import Calculator from './Calculator/Calculator';
 import Code from './Code/Code';
 import CodePopUp from './Code/CodePopUp';
 import Tunes from './Tunes/Tunes';
+import Terminal from './Terminal/Terminal';
 
 export default function Home(props) {
   const [code, setCode] = useState({
@@ -74,6 +75,13 @@ export default function Home(props) {
           setState={props.setState}
           user={props.user}
         ></Tunes>
+      ) : null}
+      {props.state.showTerminal ? (
+        <Terminal
+          state={props.state}
+          setState={props.setState}
+          user={props.user}
+        ></Terminal>
       ) : null}
     </div>
   );
