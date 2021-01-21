@@ -28,6 +28,16 @@ export default function Home(props) {
   };`,
   });
 
+  const [open, setOpen] = useState({
+    showFolders: true,
+    showShared: false,
+    showPrivate: false,
+    bgActive: 'red',
+    bgInActive: 'green',
+    fileId: 0,
+    shared: [],
+    private: [],
+  });
   useEffect(() => {
     console.log(code);
   }, [code]);
@@ -65,6 +75,8 @@ export default function Home(props) {
           state={props.state}
           setState={props.setState}
           code={code}
+          open={open}
+          setOpen={setOpen}
           user={props.user}
           setCode={setCode}
         ></CodePopUp>
@@ -78,6 +90,8 @@ export default function Home(props) {
       ) : null}
       {props.state.showTerminal ? (
         <Terminal
+          open={open}
+          setOpen={setOpen}
           state={props.state}
           setState={props.setState}
           user={props.user}

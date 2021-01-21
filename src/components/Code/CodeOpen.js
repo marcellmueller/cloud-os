@@ -3,17 +3,6 @@ import axios from 'axios';
 import './CodeOpen.scss';
 import File from './File';
 export default function CodeOpen(props) {
-  const [open, setOpen] = useState({
-    showFolders: true,
-    showShared: false,
-    showPrivate: false,
-    bgActive: 'red',
-    bgInActive: 'green',
-    fileId: 0,
-    shared: [],
-    private: [],
-  });
-
   useEffect(() => {
     const data = {
       user_id: props.user.id,
@@ -22,8 +11,8 @@ export default function CodeOpen(props) {
     Promise.all([axios.post('/open', data), axios.post('/open/shared', data)])
       .then((all) => {
         if (all[0].data || all[1].data) {
-          setOpen({
-            ...open,
+          props.setOpen({
+            ...props.open,
             private: all[0].data,
             shared: all[1].data,
           });
@@ -33,16 +22,16 @@ export default function CodeOpen(props) {
   }, []);
 
   const showFolders = () => {
-    setOpen({
-      ...open,
+    props.setOpen({
+      ...props.open,
       showFolders: true,
       showPrivate: false,
       showShared: false,
     });
   };
   const showShared = () => {
-    setOpen({
-      ...open,
+    props.setOpen({
+      ...props.open,
       showFolders: false,
       showPrivate: false,
       showShared: true,
@@ -50,8 +39,8 @@ export default function CodeOpen(props) {
   };
 
   const showPrivate = () => {
-    setOpen({
-      ...open,
+    props.setOpen({
+      ...props.open,
       showFolders: false,
       showPrivate: true,
       showShared: false,
@@ -59,15 +48,15 @@ export default function CodeOpen(props) {
   };
 
   const selectFile = (event) => {
-    setOpen({
-      ...open,
+    props.setOpen({
+      ...props.open,
       fileId: event.target.value,
     });
   };
 
   const openPrivate = () => {
-    let file = open.private.find(
-      (x) => parseInt(x.id) === parseInt(open.fileId)
+    let file = props.open.private.find(
+      (x) => parseInt(x.id) === parseInt(props.open.fileId)
     );
     console.log(file);
     props.setCode({
@@ -85,8 +74,8 @@ export default function CodeOpen(props) {
   };
 
   const openShared = () => {
-    let file = open.shared.find(
-      (x) => parseInt(x.id) === parseInt(open.fileId)
+    let file = props.open.shared.find(
+      (x) => parseInt(x.id) === parseInt(props.open.fileId)
     );
     props.setCode({
       ...props.code,
@@ -101,7 +90,7 @@ export default function CodeOpen(props) {
       showCodePopUp: false,
     });
   };
-  const mapPrivate = open.private.map((file) => {
+  const mapPrivate = props.open.private.map((file) => {
     return (
       <File
         key={file.id}
@@ -113,7 +102,7 @@ export default function CodeOpen(props) {
     );
   });
 
-  const mapShared = open.shared.map((file) => {
+  const mapShared = props.open.shared.map((file) => {
     return (
       <File
         key={file.id}
@@ -127,7 +116,7 @@ export default function CodeOpen(props) {
 
   return (
     <>
-      {open.showFolders ? (
+      {props.open.showFolders ? (
         <div className="code-open">
           <div className="open-file-system" onClick={showPrivate}>
             <img
@@ -149,12 +138,12 @@ export default function CodeOpen(props) {
           </div>
         </div>
       ) : null}
-      {open.showShared ? (
+      {props.open.showShared ? (
         <div className="open-file-shared">
           <select
             className="file-list"
             name="file-list"
-            size={open.shared.length + 1}
+            size={props.open.shared.length + 1}
           >
             {mapShared}
           </select>
@@ -168,12 +157,12 @@ export default function CodeOpen(props) {
           </div>
         </div>
       ) : null}
-      {open.showPrivate ? (
+      {props.open.showPrivate ? (
         <div className="open-file-private">
           <select
             className="file-list"
             name="file-list"
-            size={open.private.length + 1}
+            size={props.open.private.length + 1}
           >
             {mapPrivate}
           </select>{' '}

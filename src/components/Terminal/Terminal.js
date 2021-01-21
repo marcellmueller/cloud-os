@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
+import axios from 'axios';
 import Window from '../Window';
 import Line from './Line';
 import './Terminal.scss';
 export default function TerminalApp(props) {
-  console.log(props.user);
   const name = props.user.firstname.toLowerCase() + '@linux';
   const [terminal, setTerminal] = useState({
     name: name,
@@ -12,39 +12,23 @@ export default function TerminalApp(props) {
     output: [],
   });
 
-  // useEffect(() => {
-  //   console.log(calcState);
-  // }, [calcState]);
-  const exampleFileSystem = {
-    home: {
-      type: 'FOLDER',
-      children: {
-        user: {
-          type: 'FOLDER',
-          children: null,
-        },
-        file1: {
-          type: 'FILE',
-          content: 'Contents of file 1',
-          extension: 'txt',
-        },
-        dog: {
-          type: 'FILE',
-          content: 'asda',
-          extension: 'png',
-        },
-      },
-    },
-    docs: {
-      type: 'FOLDER',
-      children: null,
-    },
-    blog: {
-      type: 'FILE',
-      content: 'asdasd',
-      extension: 'txt',
-    },
-  };
+  useEffect(() => {
+    const data = {
+      user_id: props.user.id,
+    };
+
+    Promise.all([axios.post('/open', data), axios.post('/open/shared', data)])
+      .then((all) => {
+        if (all[0].data || all[1].data) {
+          props.setOpen({
+            ...props.open,
+            private: all[0].data,
+            shared: all[1].data,
+          });
+        }
+      })
+      .catch(console.log('error'));
+  }, []);
 
   const terminalEnter = (event) => {
     event.preventDefault();
@@ -59,11 +43,20 @@ export default function TerminalApp(props) {
         </>
       );
     }
+
+    const privateFiles = props.open.private.map((file) => {
+      return file.name + '.' + file.extension;
+    });
+
+    const sharedFiles = props.open.shared.map((file) => {
+      return file.name + '.' + file.extension;
+    });
+    console.log(sharedFiles);
     if (content.trim() === 'cd Private') {
-      message = <>Private file listing</>;
+      message = <>{privateFiles.join(' ')}</>;
     }
     if (content.trim() === 'cd Shared') {
-      message = <>Shared file listing</>;
+      message = <>{sharedFiles.join(' ')}</>;
     }
     if (content.trim() === 'whoami') {
       message = <>{props.user.firstname}</>;
