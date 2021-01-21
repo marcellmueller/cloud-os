@@ -29,7 +29,7 @@ export default function TerminalApp(props) {
         }
       })
       .catch(console.log('error'));
-  }, []);
+  }, [terminal]);
 
   useEffect(() => {
     console.log(terminal.command);
@@ -39,13 +39,13 @@ export default function TerminalApp(props) {
     const data = { name, extension, user_id, shared };
     const URL = `/delete/`;
     const promise = axios
-      .post(URL, data)
+      .delete(URL, { data: data })
       .then((response) => {
         console.log(response);
         console.log('file deleted');
       })
       .catch(function (error) {
-        console.log('hello');
+        console.log('error');
       });
 
     return promise;
