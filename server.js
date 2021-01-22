@@ -46,7 +46,7 @@ app.use('/open', openRoutes(db));
 app.use('/delete', deleteRoutes(db));
 
 app.get('/', (req, res) => {
-  console.log(req.session);
+  res.sendFile(path.join(__dirname + '/index.html'));
 });
 
 app.get('/users', (req, res) => {
