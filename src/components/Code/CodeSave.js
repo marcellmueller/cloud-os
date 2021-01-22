@@ -4,42 +4,33 @@ import './CodeSave.scss';
 import Code from './Code';
 
 export default function CodeSave(props) {
-  const [save, setSave] = useState({
-    user_id: 0,
-    name: '',
-    extension: 'js',
-    content: '',
-    shared: false,
-    error: false,
-  });
-
   useEffect(() => {
-    setSave({
-      ...save,
+    props.setSave({
+      ...props.save,
       name: props.code.name,
     });
   }, []);
 
   const nameOnChange = (event) => {
-    setSave({
-      ...save,
+    props.setSave({
+      ...props.save,
       name: event.target.value,
     });
   };
 
   const sharedOnChange = (event) => {
-    console.log(save);
-    setSave({
-      ...save,
+    console.log(props.save);
+    props.setSave({
+      ...props.save,
       shared: event.target.value === 'true' ? true : false,
     });
   };
 
   const extensionOnChange = (event) => {
-    console.log(save);
+    console.log(props.save);
 
-    setSave({
-      ...save,
+    props.setSave({
+      ...props.save,
       extension: event.target.value,
     });
   };
@@ -48,10 +39,10 @@ export default function CodeSave(props) {
     event.preventDefault();
     const data = {
       user_id: props.user.id,
-      name: save.name,
-      extension: save.extension,
+      name: props.save.name,
+      extension: props.save.extension,
       content: props.code.content,
-      shared: save.shared,
+      shared: props.save.shared,
     };
     console.log(props.code);
     const URL = `/save/`;
@@ -59,8 +50,8 @@ export default function CodeSave(props) {
       .post(URL, data)
       .then((response) => {
         console.log(response);
-        setSave({
-          ...save,
+        props.setSave({
+          ...props.save,
           user_id: 0,
           name: '',
           extension: 'js',
@@ -74,8 +65,8 @@ export default function CodeSave(props) {
         });
       })
       .catch(function (error) {
-        setSave({
-          ...save,
+        props.setSave({
+          ...props.save,
           error: true,
         });
       });
@@ -94,7 +85,7 @@ export default function CodeSave(props) {
           required
           pattern="[a-zA-Z0-9-_]+"
           name="lastName"
-          value={save.name}
+          value={props.save.name}
           onChange={nameOnChange}
         />
         <h3>Private or Shared:</h3>
@@ -126,7 +117,7 @@ export default function CodeSave(props) {
           Save
         </button>
       </form>
-      {save.error ? <div>Error Saving</div> : null}
+      {props.save.error ? <div>Error Saving</div> : null}
     </div>
   );
 }

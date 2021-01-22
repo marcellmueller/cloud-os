@@ -114,16 +114,18 @@ export default function TerminalApp(props) {
 
     if (content.split(' ').length === 2 && content.split(' ')[0] === 'touch') {
       let file = content.split(' ')[1];
-      if (content.split(' ') < 2) {
-        message = <>please add a file extension!</>;
-      }
 
-      if (content.split(' ') > 2) {
-        message = (
-          <>Invalid file name, please use format [filename].[extension]</>
-        );
-      }
-      if (file.length === 2) {
+      console.log('split' + content.split(' ').length);
+      // if (content.split(' ').length < 2) {
+      //   message = <>please add a file extension!</>;
+      // }
+
+      // if (content.split(' ').length > 2) {
+      //   message = (
+      //     <>Invalid file name, please use format [filename].[extension]</>
+      //   );
+      // }
+      if (file.split('.').length === 2) {
         let fileName = file.split('.')[0];
         let extension = file.split('.')[1];
         let shared = false;
@@ -137,11 +139,15 @@ export default function TerminalApp(props) {
           content: '',
           shared: shared,
         };
+        message = <>{file} created</>;
+
+        console.log(data);
         const URL = `/save/`;
         const promise = axios
           .post(URL, data)
           .then((response) => {
             console.log(response);
+
             props.setSave({
               ...props.save,
               user_id: 0,
@@ -157,11 +163,9 @@ export default function TerminalApp(props) {
               ...props.save,
               error: true,
             });
+            return promise;
           });
-
-        return promise;
       }
-      message = <>{file} created</>;
     }
 
     //'rm [filename]' code

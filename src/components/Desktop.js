@@ -29,6 +29,15 @@ export default function Desktop(props) {
   };`,
   });
 
+  const [save, setSave] = useState({
+    user_id: 0,
+    name: '',
+    extension: 'js',
+    content: '',
+    shared: false,
+    error: false,
+  });
+
   const [open, setOpen] = useState({
     showFolders: true,
     showShared: false,
@@ -39,9 +48,7 @@ export default function Desktop(props) {
     shared: [],
     private: [],
   });
-  useEffect(() => {
-    console.log(code);
-  }, [code]);
+  useEffect(() => {}, [code]);
 
   const toggle = () => {
     props.setState({
@@ -64,6 +71,8 @@ export default function Desktop(props) {
       ) : null}
       {props.state.showCode ? (
         <Code
+          save={save}
+          setSave={setSave}
           state={props.state}
           setState={props.setState}
           code={code}
@@ -93,6 +102,8 @@ export default function Desktop(props) {
         <Terminal
           open={open}
           setOpen={setOpen}
+          save={save}
+          setSave={setSave}
           code={code}
           setCode={setCode}
           state={props.state}

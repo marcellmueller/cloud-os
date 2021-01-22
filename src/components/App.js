@@ -23,9 +23,7 @@ export default function App() {
   const [error, setError] = useState('');
   const [message, setMessage] = useState('');
 
-  useEffect(() => {
-    console.log(user);
-  }, [user]);
+  useEffect(() => {}, [user]);
 
   return (
     <BrowserRouter>

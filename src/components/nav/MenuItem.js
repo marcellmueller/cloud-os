@@ -3,11 +3,9 @@ import './MenuItem.scss';
 export default function MenuItem(props) {
   const toggle = () => {
     const openApps = props.state.openApps;
-    console.log(openApps);
     const keyName = 'show' + props.name;
 
     const index = openApps.indexOf(props.name);
-    console.log(index);
     if (index < 0) {
       openApps.push(props.name);
       props.setState({
