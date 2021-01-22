@@ -28,7 +28,7 @@ export default function TerminalApp(props) {
           });
         }
       })
-      .catch(console.log('error'));
+      .catch();
   }, [terminal]);
 
   useEffect(() => {
@@ -108,7 +108,63 @@ export default function TerminalApp(props) {
     if (content === 'whoami') {
       message = <>{props.user.firstname.toLowerCase()}</>;
     }
+    if (content === 'touch') {
+      message = <>touch: missing file operand</>;
+    }
 
+    if (content.split(' ').length === 2 && content.split(' ')[0] === 'touch') {
+      let file = content.split(' ')[1];
+      if (content.split(' ') < 2) {
+        message = <>please add a file extension!</>;
+      }
+
+      if (content.split(' ') > 2) {
+        message = (
+          <>Invalid file name, please use format [filename].[extension]</>
+        );
+      }
+      if (file.length === 2) {
+        let fileName = file.split('.')[0];
+        let extension = file.split('.')[1];
+        let shared = false;
+        if (terminal.command === 'shared') {
+          shared = true;
+        }
+        const data = {
+          user_id: props.user.id,
+          name: fileName,
+          extension: extension,
+          content: '',
+          shared: shared,
+        };
+        const URL = `/save/`;
+        const promise = axios
+          .post(URL, data)
+          .then((response) => {
+            console.log(response);
+            props.setSave({
+              ...props.save,
+              user_id: 0,
+              name: '',
+              extension: 'js',
+              content: '',
+              shared: false,
+              error: false,
+            });
+          })
+          .catch(function (error) {
+            props.setSave({
+              ...props.save,
+              error: true,
+            });
+          });
+
+        return promise;
+      }
+      message = <>{file} created</>;
+    }
+
+    //'rm [filename]' code
     if (content.split(' ').length === 2 && content.split(' ')[0] === 'rm') {
       let file = content.split(' ')[1];
       let fileName = file.split('.')[0];
@@ -132,6 +188,13 @@ export default function TerminalApp(props) {
       });
     }
 
+    if (content.split(' ').length > 2 && content.split(' ')[0] === 'rm') {
+      message = '[rm] command has too many arguments';
+    }
+
+    //'rm [filename]' code ends
+
+    //'code [filename]' code -- opens file in Code app
     if (content.split(' ').length === 2 && content.split(' ')[0] === 'code') {
       let file = content.split(' ')[1];
       let fileName = file.split('.')[0];
@@ -179,6 +242,13 @@ export default function TerminalApp(props) {
       }
     }
 
+    if (content.split(' ').length > 2 && content.split(' ')[0] === 'code') {
+      message = '[code] command has too many arguments';
+    }
+
+    //code [filename] code ends
+
+    //rm code
     if (content === 'rm') {
       message = (
         <>
@@ -213,7 +283,9 @@ export default function TerminalApp(props) {
     if (content === 'rm -rf Private') {
       message = <>You don't have permission to delete this directory</>;
     }
+    //rm code ends
 
+    //ls code here
     if (content === 'ls') {
       if (terminal.command === '') {
         message = (
@@ -230,6 +302,7 @@ export default function TerminalApp(props) {
         message = <>{sharedFiles.join(' ')}</>;
       }
     }
+    //end ls code
 
     output.push({ name: name, content: content, message: message });
     setTerminal({
