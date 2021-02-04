@@ -9,14 +9,12 @@ module.exports = (db) => {
     const shared = req.body.shared;
 
     const queryParams = [user_id, name, extension, content, shared];
-    console.log(queryParams);
     db.query(
       `SELECT * FROM code_files
               WHERE name = $1
               AND user_id = $2;`,
       [name, user_id]
     ).then((data) => {
-      console.log(data.rows);
       if (!data.rows[0]) {
         db.query(
           `INSERT INTO code_files (user_id, name, extension, content, shared)
@@ -26,7 +24,6 @@ module.exports = (db) => {
         )
           .then((data) => {
             const file = data.rows[0];
-            console.log(file);
             return res.status(200).send(file);
           })
           .catch((err) => {
@@ -48,7 +45,6 @@ module.exports = (db) => {
         )
           .then((data) => {
             const file = data.rows[0];
-            console.log(file);
             return res.status(200).send(file);
           })
           .catch((err) => {

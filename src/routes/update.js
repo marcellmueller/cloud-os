@@ -4,7 +4,6 @@ const bcrypt = require('bcrypt');
 
 module.exports = (db) => {
   router.post('/', (req, res) => {
-    console.log(req.body);
     const id = req.body.id;
     const firstName = req.body.firstName;
     const lastName = req.body.lastName;
@@ -24,7 +23,6 @@ module.exports = (db) => {
       }
       const hashedPassword = bcrypt.hashSync(password, 10);
       const queryParams = [firstName, lastName, email, hashedPassword, id];
-      console.log(queryParams);
       db.query(
         `UPDATE users
         SET firstName = $1,
@@ -36,7 +34,6 @@ module.exports = (db) => {
         queryParams
       )
         .then((data) => {
-          console.log(data.rows);
           const user = data.rows[0];
           return res.status(200).send(user);
         })
